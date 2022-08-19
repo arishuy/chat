@@ -1,9 +1,11 @@
 import React from 'react'
-
+import '../scss/components/Content.css'
 const Content = () => {
   return (
     <div className="content col-full">
+        
         <div className="message col-half">
+        <h1>Message</h1>
             <div className="message-content">
                 <i className="fa-solid fa-user-large"></i>
                 <h1>Huy Bui</h1>
