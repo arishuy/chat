@@ -1,12 +1,13 @@
 import React from 'react'
-import './Body.css'
-
+import '../scss/components/Body.css'
+import Sidebar from './Sidebar'
+import Content from './Content'
 const Body = () => {
   return (
     <div>
         <div id="body">
-            <div className="sidebar">
-                abc</div>
+            <Sidebar />
+            <Content />
             </div>
     </div>
   )
