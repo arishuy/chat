@@ -9,7 +9,6 @@ function App() {
       {/* <Header />
       <Body />
       <Footer /> */}
-      abc
     </div>
 
   );
