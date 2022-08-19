@@ -1,8 +1,8 @@
 import React from 'react'
+import '../scss/components/Sidebar.css'
 
 const Sidebar = () => {
   return (
-    <div>
         <div className="sidebar">
                 <button>
                 <i class="fa-solid fa-house"></i>
@@ -20,7 +20,6 @@ const Sidebar = () => {
                 <i class="fa-solid fa-note-sticky"></i>
                  </button>
                 </div>
-    </div>
   )
 }
 
