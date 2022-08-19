@@ -1,0 +1,157 @@
+#body {
+  height: 92vh;
+  width: 100%;
+  display: flex;
+  /* flex-direction: column;
+  justify-content: space-around; */
+  /* background-color: #f5f5f5; */
+}
+.sidebar {
+  display: block;
+  width: 30%;
+  height: 92vh;
+  background: linear-gradient(
+      180deg,
+      rgba(147, 217, 74, 0.2) 0%,
+      rgba(147, 217, 74, 0) 100%,
+      rgba(147, 217, 74, 0.0557697) 100%
+    ),
+    linear-gradient(180deg, #6bfc56 0%, rgba(107, 252, 86, 0) 100%);
+}
+.sidebar button {
+  width: 100%;
+  height: 10%;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+  transition: color 0.2s ease-in-out;
+}
+.sidebar button:hover {
+  color: red;
+  transform: scale(1.1);
+}
+.content {
+  float: right;
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr)); */
+  grid-column: 1;
+  width: 95%;
+  height: 92vh;
+}
+.content .message .message-content {
+  margin-top: 20px;
+  margin-left: 50px;
+  position: relative;
+  width: 40vw;
+  height: 200px;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 2, 200px;
+  grid-template-rows: 2, 200px;
+  justify-content: center;
+}
+.content .message  .message-content i {
+  width: 200px;
+  grid-column: 1/1;
+  grid-row: 2;
+  text-align: center;
+  font-size: 50px;
+  color: black;
+  font-weight: bold;
+}
+.content .message .message-content h1 {
+  margin-top: 25px;
+  grid-column: 2;
+  grid-row: 1;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 39px;
+  color: black;
+}
+.content .message .message-content p {
+  grid-column: 2;
+  grid-row: 2;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 39px;
+  color: black;
+  margin-top: -10px;
+}
+.reminder {
+  width: 43vw;
+  height: 200px;
+  float: right;
+  margin-top: 50px;
+}
+.reminder .message {
+  margin-top: 15px;
+  margin-left: 50px;
+  position: relative;
+  width: 500px;
+  height: 150px;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 10px;
+}
+.reminder .message i {
+  width: 500px;
+  text-align: center;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  padding-top: 5px;
+}
+.reminder .header-remind {
+  margin-left: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 39px;
+  color: black;
+}
+.reminder .message h1 {
+  width: 284px;
+  height: 27px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  margin-left: 10px;
+  color: #000000;
+}
+.reminder .message p {
+  width: 437px;
+  height: 27px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 20px;
+  color: #000000;
+  margin-left: 10px;
+}
