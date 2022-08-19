@@ -1,17 +1,18 @@
-import './App.css';
-import io from 'socket.io-client';
-import Header from './components/Header';
-import Body from './components/Body';
-const socket = io.connect('http://localhost:3001');
+
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Routes from "../../client/src/routes/routes";
 
 function App() {
   return (
-    <div classNameName="App">
-      <Header />
-      <Body />
-      {/* <Footer /> */}
-    </div>
-
+    <BrowserRouter>
+      <div className="App">
+        <div className="container">
+          <div className="main">
+            <Routes />
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
