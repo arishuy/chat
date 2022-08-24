@@ -1,8 +1,11 @@
 import React from 'react'
+import UserCard from '../components/UserCard'
 
 const Message_Contact = () => {
   return (
-    <div>Message_Contact</div>
+      <div>
+          <UserCard />
+      </div>
   )
 }
 
