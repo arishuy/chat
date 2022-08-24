@@ -22,7 +22,10 @@
     color: black;
     transition: color 0.2s ease-in-out;
   }
-  .sidebar button:hover {
+  .sidebar a {
+    color: black;
+  }
+  .sidebar a:hover {
     color: red;
     transform: scale(1.1);
   }
