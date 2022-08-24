@@ -1,11 +1,14 @@
 import React from 'react'
-import UserCard from '../components/UserCard'
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
+
 
 const Message_Contact = () => {
   return (
-      <div>
-          <UserCard />
-      </div>
+    <div>
+      <Header />
+      <Sidebar />
+    </div>
   )
 }
 
