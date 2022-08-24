@@ -31,13 +31,14 @@
   display: flex;
   justify-content: center;
 }
-.content .message .message-content i {
-  width: 150px;
+
+.content .message .message-content .kimochi {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
   text-align: center;
-  font-size: 50px;
   color: black;
-  font-weight: bold;
-  margin: 50px 30px 50px 30px;
+  margin: 20px 0px 50px 30px;
 }
 .content .message .message-content .message-text {
   text-align: left;
@@ -52,7 +53,7 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 39px;
   color: black;
 }
@@ -62,7 +63,7 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 39px;
   color: black;
   margin-top: -15px;

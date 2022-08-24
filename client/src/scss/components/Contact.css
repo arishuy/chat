@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "Dancing Script";
+  src: url("../../font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
+}
+.contact-body {
+  display: block;
+  width: 95%;
+  height: 92vh;
+}
+.contact-content {
+  display: flex;
+  height: 20vh;
+  justify-content: space-between;
+}
+.contact-regular {
+  width: 70%;
+  margin-left: 50px;
+}
+.contact-regular h1 {
+  font-family: "Dancing Script";
+}
+.contact-avatar {
+  margin-left: 30px;
+  display: flex;
+}
+.contact-avatar {
+  /* Rounded border */
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+}
+
+.avatar__image {
+  /* Rounded border */
+  border-radius: 50%;
+
+  /* Take full size */
+  height: 100%;
+  width: 100%;
+  padding-right: 15px;
+}
+.search {
+  margin: 10px 10px 10px 10px;
+  float: right;
+  width: 30%;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-content i {
+  position: absolute;
+  padding: 7px 0 0 10px;
+  font-size: 18px;
+}
+
+.search-content input {
+  padding-left: 40px;
+  font-size: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  background-color: rgba(217, 217, 217, 1);
+}
+.search-content input:focus {
+    border: none;
+    outline: none;
+}
+.search-content input::placeholder {
+  font-style: italic;
+  font-size: 18px;
+  color: rgb(67, 67, 67);
+}
+.contact-message {
+  margin-left: 45px;
+}
+.message-content {
+  margin-top: 20px;
+  position: relative;
+  width: 90vw;
+  height: 100px;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+}
+.message-content .kimochi {
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  /* margin: 20px 25px 50px -500px; */
+}
+.message-content .message-text {
+  position: absolute;
+  left: 150px;
+  text-align: left;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+}
+.message-content h1 {
+  margin-top: 15px;
+  grid-column: 2;
+  grid-row: 1;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 39px;
+  color: black;
+}
+.message-content p {
+  grid-column: 2;
+  grid-row: 2;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 39px;
+  color: black;
+  margin-top: -15px;
+}
+.message-content h3 {
+  font-style: italic;
+  font-size: 15px;
+  color: gray;
+  font-weight: none;
+  position: absolute;
+  right: 15px;
+}
