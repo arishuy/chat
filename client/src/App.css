@@ -1,4 +1,9 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../src/font/Inter/static/Inter-Regular.ttf");
+}
 html,body {
+  font-family: "Inter";
   padding: 0;
   margin: 0;
   width: 100%;
