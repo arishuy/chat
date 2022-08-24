@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+import Body_contact from '../components/Body_contact'
 
 
 const Message_Contact = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
+      <Body_contact />
     </div>
   )
 }
