@@ -7,21 +7,36 @@ const Content = () => {
         <div className="message col-half">
         <h1>Message</h1>    
             <div className="message-content">
-                <i className="fa-solid fa-user-large"></i>
+                <div className="contact-avatar kimochi">
+            <img
+              className="avatar__image"
+              src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+            ></img>
+          </div>
                 <div className="message-text">
                 <h1>Huy Bui</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>   
                 </div>
             </div>
             <div className="message-content">
-                <i className="fa-solid fa-user-large"></i>
+                <div className="contact-avatar kimochi">
+            <img
+              className="avatar__image"
+              src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+            ></img>
+          </div>
                 <div className="message-text">
                 <h1>Huy Bui</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>   
                 </div>
             </div>
             <div className="message-content">
-                <i className="fa-solid fa-user-large"></i>
+                <div className="contact-avatar kimochi">
+            <img
+              className="avatar__image"
+              src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+            ></img>
+          </div>
                 <div className="message-text">
                 <h1>Huy Bui</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>   
