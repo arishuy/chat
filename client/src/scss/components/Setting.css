@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Dancing Script";
+    src: url("../../font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
+  }
+.setting {
+  margin-left: 150px;
+  margin-top: 25px;
+}
+
+h1 {
+    font-family: "Dancing Script";
+}
+.setting-chosen {
+  /* background: white; */
+  width: 1000px;
+  height: 50vh;
+  display: grid;
+  grid-template-columns: repeat(2,300px);
+  grid-template-rows: repeat(3,50px);
+  grid-gap: 20px;
+}
+.setting-content {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  width: 300px;
+  height: 50px;
+  position: relative;
+}
+.setting-content span{
+    position: absolute;
+    left: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.setting-label {
+    position:absolute;
+    right: 10px;
+}
+.label {
+  display: flex;
+
+  /* Rounded border */
+  border-radius: 9999px;
+
+  /* Size */
+  height: 24px;
+  width: 48px;
+}
+.label__input {
+  /* Hide the input */
+  display: none;
+}
+
+.label__circle {
+  /* Rounded border */
+  border-radius: 9999px;
+
+  /* Size */
+  width: 24px;
+
+  background-color: #fff;
+
+  /* OFF status */
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
