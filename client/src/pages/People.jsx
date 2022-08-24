@@ -1,13 +1,12 @@
 import React from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
-
+import Body_people from '../components/Body_people'
 
 const People = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
+      <Body_people />
     </div>
   )
 }

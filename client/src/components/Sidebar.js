@@ -20,12 +20,12 @@ const Sidebar = () => {
                 <i class="fa-solid fa-people-group"></i>
                 </Link></button>
                 <button>
-                <Link to = "/Reminder">
+                <Link to = "/Setting">
                 <i class="fa-solid fa-sliders"></i>
                 </Link>
                 </button>
                 <button>
-                <Link to = "/Setting">
+                <Link to = "/Reminder">
                 <i class="fa-solid fa-note-sticky"></i>
                 </Link>
                  </button>
