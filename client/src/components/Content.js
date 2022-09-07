@@ -43,25 +43,25 @@ const Content = () => {
                 </div>
             </div>
           </div>
-          <div className="reminder col-half">
+          <div className="reminder1 col-half">
              <div className="header-remind">Reminder</div>
-            <div className="reminder-content">
+            <div className="reminder1-content">
                 <div className="message">
-                    <div className="reminder-item">
+                    <div className="reminder1-item">
                         <i className="fa-solid fa-calendar-alt"></i>
                         <h1>Meet Uyen Hoang</h1>
                         <p>20/7/2022</p>
                     </div>
                 </div>
                 <div className="message">
-                    <div className="reminder-item">
+                    <div className="reminder1-item">
                         <i className="fa-solid fa-calendar-alt"></i>
                         <h1>Watch movie</h1>
                         <p>21/7/2022</p>
                     </div>
                 </div>
                 <div className="message">
-                    <div className="reminder-item">
+                    <div className="reminder1-item">
                         <i className="fa-solid fa-calendar-alt"></i>
                         <h1>Go to library</h1>
                         <p>22/7/2022</p>

@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+import Body_reminder from '../components/Body_reminder'
 
 
 const Reminder = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
+      <Body_reminder />
     </div>
   )
 }

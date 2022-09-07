@@ -29,6 +29,9 @@ const Sidebar = () => {
                 <i class="fa-solid fa-note-sticky"></i>
                 </Link>
                  </button>
+                 <button>
+                 <i class="fa-sharp fa-solid fa-paper-plane about_us"></i>
+                 </button>
                 </div>
   )
 }
