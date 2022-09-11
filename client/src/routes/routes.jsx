@@ -12,8 +12,8 @@ import Login from "../pages/Login";
 function routes() {
   return (
     <Routes>
-      <Route path="/" element={<DashBoard />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/" element={<DashBoard />} />
       <Route path="/Message_ChatWindow" element={<Message_ChatWindow />} />
       <Route path="/Message_Contact" element={<Message_Contact />} />
       <Route path="/People" element={<People />} />

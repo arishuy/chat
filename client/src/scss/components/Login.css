@@ -1,66 +1,183 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-.Login {
-  max-width: 390px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
-}
- 
-#signup {
-  background: -webkit-linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-}
-#login {
-  background-color: #fff;
-  color: black;
-}
-.Login .slide-controls {
-  position: relative;
-  display: flex;
-  height: 50px;
-  width: 100%;
-  margin: 30px 0 10px 0;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-}
-.Login .slide {
-  height: 100%;
-  width: 50%;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
-  line-height: 48px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.6s ease;
-  border: none;
-}
-.form-inner{
-  display: block;
-}
-.field {
-  text-indent: 10px;
-  width: 100%;
-  height: 3em;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  margin-bottom: 1em;
-  border-style:solid;
-}
-.form-inner a{
-  font-size: small;
-}
-.form-inner button{
-  width: 100%;
-  height: 2.5em;
-   background: -webkit-linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-   border-style: none;
-   border-radius: 3px;
-   font-size:larger;
-   color: white;
-   margin-bottom: 0.75em;
-
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .open {
+    display: block;
+  }
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: black;
+    text-align: center;
+  }
+  
+  .login-box .user-box {
+    position: relative;
+  }
+  
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background: transparent;
+  }
+  .login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: black;
+    font-size: 15px;
+  }
+  
+  .login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    margin-left: 100px;
+    letter-spacing: 4px
+  }
+  
+  .login-box a:hover {
+    background: rgba(121, 217, 252, 0.54);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px pink,
+                0 0 25px pink,
+                0 0 50px pink,
+                0 0 100px pink;
+    cursor: pointer;
+  }
+  
+  .login-box a span {
+    position: absolute;
+    display: block;
+  }
+  
+  .login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, pink);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, pink);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, pink);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, pink);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+  
