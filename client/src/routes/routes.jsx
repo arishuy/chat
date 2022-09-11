@@ -7,11 +7,13 @@ import Message_Contact from "../pages/Message_Contact";
 import People from "../pages/People";
 import Reminder from "../pages/Reminder";
 import Setting from "../pages/Setting";
+import Login from "../pages/Login";
 
 function routes() {
   return (
     <Routes>
       <Route path="/" element={<DashBoard />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/Message_ChatWindow" element={<Message_ChatWindow />} />
       <Route path="/Message_Contact" element={<Message_Contact />} />
       <Route path="/People" element={<People />} />
