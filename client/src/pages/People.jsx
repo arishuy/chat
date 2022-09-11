@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
-import Body_people from '../components/Body_people'
+import Body_people from '../components/Body/Body_people'
 
 const People = () => {
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import "../scss/components/People.css";
-
+import Friendcard from "./Card/Friendcard";
+import Requestcard from "./Card/Requestcard";
 const People = () => {
   return (
     <div className="people">
@@ -18,147 +19,23 @@ const People = () => {
         <div className="total-friends">
           <h1>Total Friends</h1>
           <div className="friends">
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Huy Bui</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Uyen Hoang</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Nguyen Hung</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Vinh Nhan</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Ngoc Hai</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Huu Huy</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Minh Nhat</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Anh Khoa</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Thao Quyen</span>
-            </div>
-            <div className="friend-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Do Khoi</span>
-            </div>
+            <Friendcard name="Huy Bui" />
+            <Friendcard name="Uyen Hoang" />
+            <Friendcard name="Do Khoi" />
+            <Friendcard name="Thao Quyen" />
+            <Friendcard name="Vinh Nhan" />
+            <Friendcard name="Ngoc Hai" />
+            <Friendcard name="Hung Nguyen" />
+            <Friendcard name="Huu Huy" />
+            <Friendcard name="Vinh Quang" />
+            <Friendcard name="Chau Anh" />
           </div>
         </div>
         <div className="friend-request">
           <h1>Friend Requests</h1>
           <div className="total-request">
-            <div className="request-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-              <span>Do Khoi</span>
-              <div className="group-button">
-              <button className="button v">
-              <i class="fa-solid fa-check"></i>
-                </button>
-                <button className="button x">
-                <i class="fa-solid fa-x"></i>
-                </button>
-              </div>
-            </div>
-            <div className="request-info">
-              <div className="contact-avatar">
-                <img
-                  className="avatar__image"
-                  src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
-                  alt="avatar"
-                ></img>
-              </div>
-                <span>Do Khoi</span>
-                <div className="group-button">
-              <button class="button v">
-              <i class="fa-solid fa-check"></i>
-                </button>
-                <button class="button x">
-                <i class="fa-solid fa-x"></i>
-                </button>
-              </div>
-            </div>
+            <Requestcard name="Do Khoi" />
+            <Requestcard name="Ngoc Tram" />
           </div>
         </div>
       </div>
