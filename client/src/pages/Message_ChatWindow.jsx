@@ -1,11 +1,11 @@
 import React from 'react'
+import Body_chatwindow from '../components/Body/Body_chatwindow'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
 const Message_ChatWindow = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
+      <Body_chatwindow />
     </div>
   )
 }
