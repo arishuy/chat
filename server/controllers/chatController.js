@@ -1,7 +1,7 @@
 const Chat = require("../models/chatModel");
 const catchAsync = require("../utils/catchAsync");
 
-exports.createNewChat = catchAsync(async (req, res, next) => {
+exports.createNewChat =catchAsync(async (req, res, next) => {
   const newChat = await Chat.create(req.body);
   res.status(201).json({
     status: "success",
@@ -12,23 +12,11 @@ exports.createNewChat = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllChats = catchAsync(async (req, res) => {
-  // //Build query
-  // const queryObj = { ...req.query };
-  // const excludedFields = ['page', 'sort', 'limit', 'fields'];
-  // excludedFields.forEach(el => delete queryObj[el]);
-  // const query = Message.find(queryObj);
-
-  // //Execute query
-  // const chat = await query;
-  // const allChats = await Chat.find();
-  // res.status(200).json({
-  //   status: "success",
-  //   data: {
-  //     chats: allChats
-  //   }
-  // })
-
-  const chats = await Chat.find({ users: req.user._id });
+  let query = {};
+  if (req.user) { 
+    query = { users: req.user };
+  }
+  const chats = await Chat.find(query).populate("lastestMessage");
   res.status(200).json({
     status: "success",
     data: {
@@ -38,7 +26,7 @@ exports.getAllChats = catchAsync(async (req, res) => {
 });
 
 exports.getChatById = catchAsync(async (req, res, next) => {
-  const chat = await Chat.findById(req.params.id);
+  const chat = await Chat.findById(req.params.id).populate("latestMessage");
   res.status(200).json({
     status: "success",
     data: {
