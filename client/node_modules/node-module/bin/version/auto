@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+console.log('> version:auto')
+
+// # ### running continuous integration build on node.js matrix
+// # git reset --hard origin/master
+// # npm run test
+
+// # ## in order to determine version bump entity
+// # git checkout head~2 -- test
+
+// #  # run module api tests
+// # if [ -d test/module ] && {
+
+// #   npm run test -- $(find test/module -type f -name \*.js)
+// #     # if this fails
+// #       npm version major -m "%s"
+// #       exit 0
+
+// #   npm run test -- $(find test -type f -name *.js -not -path test/module/\*)
+
+// # }
