@@ -6,10 +6,12 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
+const { Server } = require("socket.io");
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const { Server } = require("socket.io");
 const connectDB = require("./config/db");
 
 app.use(cors());
@@ -39,3 +41,31 @@ app.all("*", (req, res, next) => {
 // });
 
 app.use(globalErrorHandler);
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+   console.log(`User Connected: ${socket.id}`);
+   socket.on("chat_id", (data) => {
+     socket.join(data);
+     console.log(`User with ID: ${socket.id} with chat_id: ${data.chat}`);
+   });
+
+   socket.on("send_message", (data) => {
+     socket.to().emit("receive_message", data);
+   });
+
+   socket.on("disconnect", () => {
+     console.log("User Disconnected", socket.id);
+   });
+});
+
+
+
+
+
