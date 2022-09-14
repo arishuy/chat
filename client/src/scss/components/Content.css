@@ -11,6 +11,7 @@
 }
 .content .message {
   padding-top: 20px;
+ 
 }
 .content .message h1 {
   font-family: "Dancing Script";
@@ -19,7 +20,7 @@
   margin-top: 20px;
   position: relative;
   width: 40vw;
-  height: 150px;
+  height: 10rem;
   background: linear-gradient(
       180deg,
       rgba(121, 217, 252, 0.54) 0%,
@@ -129,4 +130,40 @@
   line-height: 20px;
   color: #000000;
   margin-left: 10px;
+}
+@media screen and (max-width: 412px) {
+  .content .message .message-content {
+    width: 20rem ;
+    height: 5rem;
+    margin-left: 0;
+    display: flex;
+  }
+  .content .message .message-content .kimochi {
+    width: 3rem;
+    height: 3rem;
+    margin: -0.2rem 0px 0.5rem 0.5rem;
+  }
+  .content .message {
+    padding: 0;
+    margin: 0;
+  }
+  .content {
+    margin-left: 2em;
+  }
+  .reminder1 {
+    display: none;
+  }
+  .content .message-text {
+  }
+  .content .message .message-content h1 {
+    font-size: 1rem;
+  }  
+  .content .message .message-content p {
+    font-size: 0.8rem;
+    width: fit-content;
+    height: fit-content;
+
+  }
+
+
 }

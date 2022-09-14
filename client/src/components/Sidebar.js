@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <button>
-        <Link to="/">
+        <Link to="/dashboard">
           <i class="fa-solid fa-house"></i>
         </Link>
       </button>
@@ -30,7 +30,7 @@ const Sidebar = () => {
           <i class="fa-solid fa-note-sticky"></i>
         </Link>
       </button>
-      <button>
+      <button className="b1">
         <i class="fa-sharp fa-solid fa-paper-plane about_us"></i>
       </button>
     </div>
