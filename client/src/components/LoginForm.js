@@ -1,31 +1,38 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../scss/components/Login.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { loginAsync } from "../redux/Slices/AuthSlice";
-import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../store/AuthContent";
 const LoginForm = () => {
+
+  const auth_context = useContext(AuthContext);
+
   let navigate = useNavigate();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   const login = {
     email: username,
     password: password,
   };
-  function handleSubmit(e) {
+  console.log(auth);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginAsync(login)).then((auth) => {
-      if (auth.payload.status==="success") {
-        navigate("/");
+    dispatch(loginAsync(login)).then(auth => {
+      if (auth.payload.status === "success") {
+        navigate("/dashboard");
+        auth_context.login( auth.payload.token);
+        // console.log(auth.payload.data.user._id);
       }
     });
-  }
-  const auth = useSelector((state) => state.auth);
-  console.log("login", auth);
-  console.log(password);
-  console.log(username);
+  }; 
+
+  // console.log("login", auth);
+  // console.log(password);
+  // console.log(username);
   return (
     <div>
       <div className="modal">

@@ -8,6 +8,7 @@ import People from "../pages/People";
 import Reminder from "../pages/Reminder";
 import Setting from "../pages/Setting";
 import Login from "../pages/Login";
+import Empty from "../pages/Empty";
 
 function routes() {
   return (

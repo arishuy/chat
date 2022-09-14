@@ -4,12 +4,10 @@ import Sidebar from '../Sidebar'
 import Contact from '../Contact'
 const Body_contact = () => {
   return (
-    <div>
         <div id="body">
             <Sidebar />
             <Contact />
             </div>
-    </div>
   )
 }
 

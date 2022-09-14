@@ -41,7 +41,7 @@ exports.login = catchAsync(async (req, res, next) => {
         status: "success",
         token,
         data: {
-            user: user
+            user : user,
         }
     })
 })

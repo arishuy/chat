@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@30..200,24&display=swap");
+
+.empty{
+	margin: 0;
+	height: 100vh;
+	display: grid;
+	place-content: center;
+    background: linear-gradient(
+        360deg,
+        #f5b895 0%,
+        rgba(245, 184, 149, 0.901042) 0.01%,
+        rgba(245, 184, 149, 0) 100%
+      ),
+      linear-gradient(180deg, #71f5f2 0%, rgba(113, 245, 242, 0) 100%);
+}
+
+.empty h1 {
+	font-size: 12vw;
+	font-family: Nabla;
+}
+
+@font-palette-values --Nabla {
+	font-family: Nabla;
+	base-palette: 2;
+}
+
+.empty span {
+	animation: depth 1s ease-in-out alternate infinite;
+	position: relative;
+	display: inline-block;
+	font-variation-settings: "EDPT" 30;
+	font-palette: --Nabla;
+	@for $i from 1 through 12 {
+		&:nth-child(#{$i}) {
+			animation-delay: $i * 0.1s;
+		}
+	}
+}
+
+@keyframes depth {
+	0% {
+		transform: translatex(0) translatey(0);
+	}
+	100% {
+		font-variation-settings: "EDPT" 200;
+		transform: translatex(0.15em) translatey(0.1em);
+	}
+}
+.login-hp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-59,
+.btn-59 *,
+.btn-59 :after,
+.btn-59 :before,
+.btn-59:after,
+.btn-59:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-59 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+}
+.btn-59:disabled {
+  cursor: default;
+}
+.btn-59:-moz-focusring {
+  outline: auto;
+}
+.btn-59 svg {
+  display: block;
+  vertical-align: middle;
+}
+.btn-59 [hidden] {
+  display: none;
+}
+.btn-59 {
+  background: none;
+  box-sizing: border-box;
+  color: #000;
+  display: block;
+  font-weight: 900;
+  -webkit-mask-image: none;
+  padding: 1.5rem 4rem;
+  position: relative;
+  text-transform: uppercase;
+}
+.btn-59 span {
+  background: lightseagreen;
+  border: 1px solid;
+  border-radius: 999px;
+  display: grid;
+  inset: 0;
+  place-items: center;
+  pointer-events: none;
+  position: absolute;
+}
+.btn-59:hover span {
+  -webkit-animation: tada 0.8s;
+  animation: tada 0.8s;
+}
+@-webkit-keyframes tada {
+  0% {
+    transform: scaleX(1);
+  }
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate(3deg);
+  }
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate(-3deg);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes tada {
+  0% {
+    transform: scaleX(1);
+  }
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate(3deg);
+  }
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate(-3deg);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
