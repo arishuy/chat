@@ -14,7 +14,7 @@ function routes() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<DashBoard />} />
-      <Route path="/Message_ChatWindow" element={<Message_ChatWindow />} />
+      <Route path="/Message_ChatWindow/:chatId" element={<Message_ChatWindow />} />
       <Route path="/Message_Contact" element={<Message_Contact />} />
       <Route path="/People" element={<People />} />
       <Route path="/Reminder" element={<Reminder />} />

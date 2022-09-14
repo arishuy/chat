@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./Button";
 import "../scss/components/Chatwindow.css";
 import Messcard from "./Card/Messcard";
+import { useParams } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { selectAuth } from "../redux/Slices/AuthSlice";
+import { getCurrentState } from "../redux/Slices/AuthSlice";
+import {
+  
+}
+import io from "socket.io-client";
+
 const Chatwindow = () => {
+  const socket = io.connect("http://localhost:3001");
+  const chatId = useParams();
+  const dispatch = useDispatch();
+  const [currentMessage, setCurrentMessage] = React.useState("");
+  const [messageList, setMessageList] = React.useState([]);
+  const sendMessage = async () => {
+    if (currentMessage !== "") {
+      const messageData = {
+        chat: chatId,
+        content: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage("");
+    }
+  };
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageList((list) => [...list, data]);
+    });
+  }, [socket]);
+
+const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      dispatch
+    }
+  };
+
+
   return (
     <div className="chat">
       <div className="chat-profile">
@@ -32,7 +74,9 @@ const Chatwindow = () => {
           <input
             type="text"
             class="container__input"
-            placeholder="Search person..."
+            placeholder="Type something..."
+            value={currentMessage}
+            onChange={(e) => setCurrentMessage(e.target.value)}
           />
           <i class="fa-solid fa-image image"></i>
           <i class="fa-solid fa-file file"></i>

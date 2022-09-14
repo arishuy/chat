@@ -16,10 +16,11 @@ const LoginForm = () => {
   };
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(loginAsync(login));
-    if (auth[0].status === "success") {
-      navigate("/");
-    }
+    dispatch(loginAsync(login)).then((auth) => {
+      if (auth.payload.status==="success") {
+        navigate("/");
+      }
+    });
   }
   const auth = useSelector((state) => state.auth);
   console.log("login", auth);

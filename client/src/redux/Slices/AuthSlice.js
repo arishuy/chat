@@ -1,18 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "axios";
 
-
 export const loginAsync = createAsyncThunk(
-    "auth/loginAsync",
-  async (payload) => { 
-      console.log(payload);
-    const response = await Axios.post("http://localhost:5000/api/auth/login", payload);
-    localStorage.setItem("token",response.data.token);
+  "auth/loginAsync",
+  async (payload) => {
+    console.log(payload);
+    const response = await Axios.post(
+      "http://localhost:5000/api/auth/login",
+      payload
+    );
+    localStorage.setItem("token", response.data.token);
     const user = response.data;
-     console.log(user);
-        return user;
-    }
-)
+    console.log(user);
+    return user;
+  }
+);
 // export const AddNewTaskAsync = createAsyncThunk(
 //   "tasks/AddNewTaskAsync",
 //   async (payload) => {
@@ -54,14 +56,26 @@ export const loginAsync = createAsyncThunk(
 const AuthSlice = createSlice({
   name: "auth",
   initialState: [],
-  reducers: {},
+  reducers: {
+    getCurrentState: (state) => {
+      console.log(state);
+      return state;
+    },
+  },
   extraReducers: {
     [loginAsync.fulfilled]: (state, action) => {
       console.log("fetching data successfully");
-       state.push(action.payload);
-      return action.payload.user;
+      //state.push(action.payload);
+      console.log(action.payload);
+      return action.payload.data;
     },
+     [getAllChatsAsync.fulfilled]: (state, action) => {
+      console.log("fetching data successfully");
+      console.log(action.payload.data.data);
+       return action.payload.data.data;
+    },  
   },
 });
-//export const { login } = AuthSlice.actions;
+export const selectAuth = (state) => state.auth;
+export const { getCurrentState } = AuthSlice.actions;
 export default AuthSlice.reducer;
