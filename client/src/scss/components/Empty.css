@@ -5,7 +5,13 @@
 	height: 100vh;
 	display: grid;
 	place-content: center;
-	background-color: #000;
+    background: linear-gradient(
+        360deg,
+        #f5b895 0%,
+        rgba(245, 184, 149, 0.901042) 0.01%,
+        rgba(245, 184, 149, 0) 100%
+      ),
+      linear-gradient(180deg, #71f5f2 0%, rgba(113, 245, 242, 0) 100%);
 }
 
 .empty h1 {
