@@ -6,29 +6,23 @@ import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuth } from "../redux/Slices/AuthSlice";
 import { getCurrentState } from "../redux/Slices/AuthSlice";
-import {
-  
-}
-import io from "socket.io-client";
+import { createNewMessageAsync } from "../redux/Slices/MessageSlice";
 
-const Chatwindow = () => {
-  const socket = io.connect("http://localhost:3001");
-  const chatId = useParams();
-  const dispatch = useDispatch();
+const Chatwindow = ({ chatId, socket }) => {
+   const dispatch = useDispatch();
   const [currentMessage, setCurrentMessage] = React.useState("");
+  //console.log(currentMessage);
   const [messageList, setMessageList] = React.useState([]);
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        chat: chatId,
+        chat: "6318d5cf0ac6538490d5d471",
         content: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
       };
       await socket.emit("send_message", messageData);
+      await socket.emit("inChat", messageData);
       setMessageList((list) => [...list, messageData]);
+      dispatch(createNewMessageAsync(messageData));
       setCurrentMessage("");
     }
   };
@@ -37,14 +31,14 @@ const Chatwindow = () => {
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
-
-const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      dispatch
-    }
-  };
-
-
+  console.log(messageList);
+  const messageListComponents = messageList.map((message) => {
+    return (
+      <div>
+        <Messcard content={message.content} />;
+        </div>
+    )
+  });
   return (
     <div className="chat">
       <div className="chat-profile">
@@ -65,9 +59,7 @@ const handleKeyPress = (event) => {
       </div>
       <div className="chat-content">
         <div className="chat-content__message">
-          <Messcard content="Alo 1 2 3 test chuong trinh" />
-          <Messcard content="123456 co ai nghe thay khong" />
-          <Messcard content="Co anh Huy nghe ne" />
+          {messageListComponents}
         </div>
         <div className="chat-content__input">
           <i class="fa-solid fa-chevron-right send"></i>
@@ -80,7 +72,7 @@ const handleKeyPress = (event) => {
           />
           <i class="fa-solid fa-image image"></i>
           <i class="fa-solid fa-file file"></i>
-          <i class="fa-solid fa-thumbs-up like"></i>
+          <i class="fa-solid fa-thumbs-up like" onClick={sendMessage}></i>
         </div>
       </div>
     </div>

@@ -1,16 +1,23 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import Axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 export const createNewMessageAsync = createAsyncThunk(
   "message/createNewMessageAsyncAsync",
-  async (payload, chatId) => {
-    console.log(payload);
-    const response = await Axios.post(
-        `'http://localhost:5000/api/message/${chat_id}`, payload, {
+  async (payload) => {
+    try {
+      const response = await Axios.post(
+        `http://localhost:5000/api/message/${payload.chat}`, payload, {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-    }
-    );
-    const message = response.data;
+      }
+      );
+      const message = response.data;
+      console.log(message);
       return message;
+    } catch (error) { 
+      console.log(error);
+    }
   }
 );
 
@@ -25,58 +32,16 @@ export const getAllMessagesAsync = createAsyncThunk(
     return data;
   }
 );
-// export const AddNewTaskAsync = createAsyncThunk(
-//   "tasks/AddNewTaskAsync",
-//   async (payload) => {
-//     const response = await Axios.post(
-//       "http://localhost:5000/api/v1/tasks",
-//       payload
-//     );
-//     const task = response.data;
-//     return task;
-//   }
-// );
-// export const deleteTaskAsync = createAsyncThunk(
-//   "tasks/deleteTaskAsync",
-//   async (payload) => {
-//     const id = payload.id;
-//     const response = await Axios.delete(
-//       `http://localhost:5000/api/v1/tasks/${id}`
-//     );
-//     return payload;
-//   }
-// );
-// export const toggleIsdoneAsync = createAsyncThunk(
-//   "tasks/toggleIsdoneAsync",
-//   async (payload) => {
-//     const id = payload.id;
-//     const newPayload = {
-//       content: payload.content,
-//       isdone: payload.isdone,
-//     };
-//     const response = await Axios.patch(
-//       `http://localhost:5000/api/v1/tasks/${id}`,
-//       { content: payload.content, isdone: payload.isdone }
-//     );
-//     console.log(newPayload);
-//     return payload;
-//   }
-// );
 
-const AuthSlice = createSlice({
-  name: "auth",
+const MessageSlice = createSlice({
+  name: "message",
   initialState: [],
   reducers: {
-    getCurrentState: (state) => {
-      console.log(state);
-      return state;
-    },
   },
   extraReducers: {
     [createNewMessageAsync.fulfilled]: (state, action) => {
-      console.log("fetching data successfully");
-      console.log(action.payload);
-      return action.payload.data;
+      console.log("adding data successfully");
+     state.push(action.payload);
     },
     [getAllMessagesAsync.fulfilled]: (state, action) => {
       console.log("fetching data successfully");
@@ -85,3 +50,5 @@ const AuthSlice = createSlice({
     },
   },
 });
+
+export default MessageSlice.reducer;

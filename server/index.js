@@ -21,10 +21,36 @@ connectDB();
 
 const apiRoutes = require("./routes/api.routes");
 app.use("/api", apiRoutes);
+
 //console.log(apiRoutes);
 const server = http.createServer(app);
 server.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
+});
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000/Message_ChatWindow",
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+
+  console.log(`User Connected: ${socket.id}`);
+  socket.on("send_message", (data) => {
+    console.log(data);
+    socket.to(data.chat).emit("receive_message", data);
+  });
+
+  socket.on("inChat", (data) => { 
+    socket.join(data.chat);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  })
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
 });
 
 app.all("*", (req, res, next) => {
@@ -42,28 +68,7 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
 
-io.on("connection", (socket) => {
-   console.log(`User Connected: ${socket.id}`);
-   socket.on("chat_id", (data) => {
-     socket.join(data);
-     console.log(`User with ID: ${socket.id} with chat_id: ${data.chat}`);
-   });
-
-   socket.on("send_message", (data) => {
-     socket.to().emit("receive_message", data);
-   });
-
-   socket.on("disconnect", () => {
-     console.log("User Disconnected", socket.id);
-   });
-});
 
 
 

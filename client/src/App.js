@@ -9,7 +9,6 @@ import AuthContextProvider from "./store/AuthContent";
 
 function App() {
   return (
-    <Provider store={store}>
     <BrowserRouter>
       <div className="App">
         <div className="container">
@@ -19,7 +18,6 @@ function App() {
         </div>
       </div>
     </BrowserRouter>
-    </Provider>
   );
 }
 
