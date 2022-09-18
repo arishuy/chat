@@ -9,7 +9,7 @@ const Content = ({reloadAllChats}) => {
   const allChats = [...reloadAllChats];
   console.log(allChats);
   const allChatsElements = allChats.map((chat) => {
-    return <Usercard chatId={chat._id} name={chat.chatName} latestMessage={chat.latestMessage.content} />
+    return <Usercard key={chat._id} name={chat.chatName} latestMessage={chat.latestMessage.content} />
   },[]);
   return (
     <div className="content col-full">

@@ -1,8 +1,10 @@
 import React from "react";
 
 const Messcard = (props) => {
-  return <div className="mess-content">
+  return <div className={props.classname}>
+    <p className="message-content-p">
     {props.content}
+    </p>
   </div>;
 };
 

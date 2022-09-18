@@ -69,6 +69,11 @@
   color: black;
   margin-top: -0.9375em;
 }
+.message-text__p  {
+  margin-top: 0.9375rem;
+  max-width: 20px !important;
+  max-height: 20px !important;
+}
 .reminder1 {
   width: 43vw;
   height: 12.5rem;
