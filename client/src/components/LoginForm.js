@@ -5,6 +5,7 @@ import { loginAsync } from "../redux/Slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../store/AuthContent";
+import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 const LoginForm = () => {
 
   const auth_context = useContext(AuthContext);
@@ -13,6 +14,7 @@ const LoginForm = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
+  const dispatchAllchats = useDispatch();
   const auth = useSelector((state) => state.auth);
   const login = {
     email: username,
@@ -23,6 +25,7 @@ const LoginForm = () => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {
       if (auth.payload.status === "success") {
+        //dispatchAllchats(getAllChatsAsync()).then(() => { console.log("get all chats") }); 
         navigate("/dashboard");
         auth_context.login( auth.payload.token);
         // console.log(auth.payload.data.user._id);

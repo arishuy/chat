@@ -7,6 +7,6 @@ export default configureStore({
   reducer: {
         chats: ChatReducer,
         auth: AuthReducer,
-        message: MessageReducer,
+    message: MessageReducer,      
   },
 });

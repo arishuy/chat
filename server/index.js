@@ -9,7 +9,6 @@ const globalErrorHandler = require("./controllers/errorController");
 const { Server } = require("socket.io");
 
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const connectDB = require("./config/db");
@@ -46,6 +45,10 @@ io.on("connection", (socket) => {
   socket.on("inChat", (data) => { 
     socket.join(data.chat);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  })
+
+  socket.on("reloadAllMessages", (data,chatId) => { 
+    socket.to(chatId).emit("reloadAllMessages", data);
   })
 
   socket.on("disconnect", () => {
