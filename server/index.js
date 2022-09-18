@@ -42,9 +42,9 @@ io.on("connection", (socket) => {
     socket.to(data.chat).emit("receive_message", data);
   });
 
-  socket.on("inChat", (data) => { 
-    socket.join(data.chat);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  socket.on("inChat", (chatId) => { 
+    socket.join(chatId);
+    console.log(`User with ID: ${socket.id} joined room: ${chatId}`);
   })
 
   socket.on("reloadAllMessages", (data,chatId) => { 

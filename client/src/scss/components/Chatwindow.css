@@ -68,14 +68,14 @@
   margin: 0.625rem 0 0.625rem 6.25rem;
   padding: 0.625rem 0.625rem 0.625rem 0.625rem;
 }
-.chat-content__message {
+.chat-content__message1 {
   width: 100%;
   height: 87%;
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: none;
 }
 .chat-content__input {
   position: absolute;
