@@ -43,7 +43,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const messageListComponents = messageList.map((message) => {
     return (
       <div>
-        <Messcard content={message.content} />;
+        <Messcard content={message.content} />
         </div>
     )
   });

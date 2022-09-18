@@ -4,7 +4,7 @@
 }
 .contact-body {
   display: block;
-  width: 95%;
+  width: calc(100vw - 5vw);
   height: 92vh;
 }
 .contact-content {
@@ -13,21 +13,21 @@
   justify-content: space-between;
 }
 .contact-regular {
-  width: 70%;
-  margin-left: 50px;
+  width: 70vw;
+  padding-left: 3.125rem;
 }
 .contact-regular h1 {
   font-family: "Dancing Script";
 }
 .contact-avatar {
-  margin-left: 30px;
+  margin-left: 1.875rem;
   display: flex;
 }
 .contact-avatar {
   /* Rounded border */
   border-radius: 50%;
-  height: 64px;
-  width: 64px;
+  height: 4rem;
+  width: 4rem;
 }
 
 .avatar__image {
@@ -37,10 +37,10 @@
   /* Take full size */
   height: 100%;
   width: 100%;
-  padding-right: 15px;
+  padding-right: 0.9375rem;
 }
 .search {
-  margin: 10px 10px 10px 10px;
+  margin: 0.625rem 5% 0.625rem 0.625rem;
   float: right;
   width: 30%;
   height: 30vh;
@@ -51,15 +51,15 @@
 
 .search-content i {
   position: absolute;
-  padding: 7px 0 0 10px;
-  font-size: 18px;
+  padding: 0.45rem 0 0 0.625rem;
+  font-size: 1.125rem;
 }
 
 .search-content input {
-  padding-left: 40px;
-  font-size: 25px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding-left: 2.5rem;
+  font-size: 1.5625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border: none;
   background-color: rgba(217, 217, 217, 1);
 }
@@ -69,31 +69,33 @@
 }
 .search-content input::placeholder {
   font-style: italic;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: rgb(67, 67, 67);
 }
 .contact-message {
-  margin-left: 45px;
+  padding-left: 2.8125rem;
+  padding-top: 1.25rem;
+  padding-right: 1.25rem;
 }
 .message-content {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: relative;
   width: 90vw;
-  height: 100px;
+  height: 6.25rem;
   background: linear-gradient(
       180deg,
       rgba(121, 217, 252, 0.54) 0%,
       rgba(121, 217, 252, 0) 100%
     ),
     #7ff0cb;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
   display: flex;
 }
 .message-content .kimochi {
   position: absolute;
-  left: 10px;
-  top: 20px;
+  left: 0.625rem;
+  top: 1.25rem;
   text-align: center;
   color: black;
   font-weight: bold;
@@ -101,21 +103,21 @@
 }
 .message-content .message-text {
   position: absolute;
-  left: 150px;
+  left: 7em;
   text-align: left;
-  font-size: 20px;
+  font-size: 1.25em;
   color: black;
   font-weight: bold;
 }
 .message-content h1 {
-  margin-top: 15px;
+  margin-top: 0.5em;
   grid-column: 2;
   grid-row: 1;
   font-family: "Inter";
   font-style: normal;
   font-weight: bold;
-  font-size: 25px;
-  line-height: 39px;
+  font-size: 1.3em;
+  line-height: 1.3em;
   color: black;
 }
 .message-content p {
@@ -124,16 +126,16 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
-  line-height: 39px;
+  font-size: 0.8em;
+  line-height: 1.8em;
   color: black;
-  margin-top: -15px;
+  margin-top: -0.9375em;
 }
 .message-content h3 {
   font-style: italic;
-  font-size: 15px;
+  font-size: 0.9375em;
   color: gray;
   font-weight: none;
   position: absolute;
-  right: 15px;
+  right: 0.9375em;
 }

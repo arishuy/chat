@@ -1,7 +1,7 @@
 .sidebar {
     position: relative;
     display: block;
-    width: 5%;
+    width: 5vw;
     height: 92vh;
     background: linear-gradient(
         180deg,
@@ -32,8 +32,10 @@
   }
   .about_us {
     position: absolute;
-    bottom: 15px;
-    left: 20px;
+    text-align: center;
+    bottom: 0.5em;
+    left: 30%;
+    /* left: 1.25rem; */
   }
   .about_us:hover {
     color: red;
