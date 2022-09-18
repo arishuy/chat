@@ -28,6 +28,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       };
       console.log(messageData);
       await socket.emit("send_message", messageData);
+      await socket.emit("inChat", chatId);
       setMessageList((list) => [...list, messageData]);
       await dispatch(createNewMessageAsync(messageData));
       setCurrentMessage("");
@@ -44,8 +45,8 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     return (
       <div>
         <Messcard content={message.content} />
-        </div>
-    )
+      </div>
+    );
   });
   return (
     <div className="chat">
@@ -65,10 +66,11 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
           <Button title="Block" />
         </div>
       </div>
+
       <div className="chat-content">
-        <div className="chat-content__message">
-          {messageListComponents}
-        </div>
+        <ScrollToBottom className="chat-content__message1">
+          <div className="chat-content__message">{messageListComponents}</div>
+        </ScrollToBottom>
         <div className="chat-content__input">
           <i class="fa-solid fa-chevron-right send"></i>
           <input
@@ -77,6 +79,11 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
             placeholder="Type something..."
             value={currentMessage}
             onChange={(e) => setCurrentMessage(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                sendMessage();
+              }
+            }}
           />
           <i class="fa-solid fa-image image"></i>
           <i class="fa-solid fa-file file"></i>

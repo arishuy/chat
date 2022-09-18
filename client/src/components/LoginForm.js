@@ -25,8 +25,9 @@ const LoginForm = () => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {
       if (auth.payload.status === "success") {
-        //dispatchAllchats(getAllChatsAsync()).then(() => { console.log("get all chats") }); 
-        navigate("/dashboard");
+        dispatchAllchats(getAllChatsAsync()).then(() => { 
+          navigate("/dashboard");
+        });
         auth_context.login( auth.payload.token);
         // console.log(auth.payload.data.user._id);
       }

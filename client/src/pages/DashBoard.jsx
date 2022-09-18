@@ -12,7 +12,6 @@ const DashBoard = () => {
   const [allChats, setAllChats] = React.useState([]);
   console.log(auth);
   const dispatch = useDispatch();
-  dispatch(getAllChatsAsync()).then((res) => { });
   return (
     <div>
       <Header />
