@@ -3,7 +3,6 @@ import "../scss/components/Header.css";
 
 const Header = () => {
   return (
-    <div>
       <div id="header">
         <div className="navigation">
           <div className="text">Chat App</div>
@@ -13,7 +12,6 @@ const Header = () => {
             <i className="fa-solid fa-user-large"></i>
           </a>
         </div>
-      </div>
     </div>
   );
 };

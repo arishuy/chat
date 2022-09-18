@@ -11,22 +11,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 3.125rem;
 }
 .search-people i {
     position: absolute;
     left: 32%;
-    padding: 7px 0 0 10px;
-    font-size: 18px;
+    padding: 0.4375rem 0 0 0.625rem;
+    font-size: 1.125rem;
   }
   
   .search-people input {
     width: 40%;
-    height: 45px;
-    padding-left: 50px;
-    font-size: 25px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 2.8125rem;
+    padding-left: 3.125rem;
+    font-size: 1.5625rem;
+    border-radius: 0.625rem;
+    box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
     border: none;
     background: linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);
 
@@ -37,7 +37,7 @@
   }
   .search-people input::placeholder {
     font-style: italic;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: rgb(67, 67, 67);
   }
 .main-content {
@@ -46,50 +46,50 @@
     display: flex;
 }
 .total-friends {
-    margin-left: 150px;
+    margin-left: 9.375rem;
 }
 .total-friends h1 {
     font-family: "Dancing Script";
 }
 .friends {
-    width: 500px;
+    width: 31.25rem;
     height: 65vh;
     display: grid;
-    grid-template-columns: repeat(2, 220px);
-    grid-template-rows: repeat(6, 100px);
-    border-radius: 15px;
+    grid-template-columns: repeat(2, 13.75rem);
+    grid-template-rows: repeat(6, 6.25rem);
+    border-radius: 0.9375rem;
     background: #26c1af;
 }
 .friend-info {
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 0.625rem;
+    margin-left: 1.25rem;
     display: flex;
-    width: 220px;
-    height: 80px;
+    width: 13.75rem;
+    height: 5rem;
 }
 .friend-info span {
     font-weight: bold;
-    padding-left: 10px;
-    padding-top: 20px;
+    padding-left: 0.625rem;
+    padding-top: 1.25rem;
 }
 .friend-request {
-    margin-left: 100px;
+    margin-left: 6.25rem;
 }
 .friend-request h1{
     font-family: "Dancing Script";
 }
 .total-request {
-    border-radius:15px;
+    border-radius:0.9375rem;
     display: grid;
-    width: 500px;
+    width: 31.25rem;
     position: relative;
     background: #26c1af;
 }
 .group-button {
     display: flex;
     position: absolute;
-    right: 20px;
-    margin-top: 10px;
+    right: 1.25rem;
+    margin-top: 0.625rem;
 }
 .button {
     align-items: center;
@@ -98,22 +98,22 @@
     flex-direction: row;
     justify-content: center;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-left: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 0.3125rem;
     background-color: white; 
 }
 .request-info {
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 0.625rem;
+    margin-left: 1.25rem;
     display: flex;
-    width: 500px;
-    height: 80px;
+    width: 31.25rem;
+    height: 5rem;
 }
 .request-info span {
     font-weight: bold;
-    padding-left: 10px;
-    padding-top: 20px;
+    padding-left: 0.625rem;
+    padding-top: 1.25rem;
 }
 .v:hover {
     background-color: #2FE620;
