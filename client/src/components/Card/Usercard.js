@@ -44,7 +44,7 @@ const Usercard = (props) => {
       </div>
       <div className="message-text">
         <h1>{props.name}</h1>
-        <p>
+        <p className="message-text__p">
           {props.latestMessage}
         </p>
       </div>

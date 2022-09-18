@@ -13,8 +13,9 @@ import io from "socket.io-client";
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = [...reloadMessages.messages];
   console.log("1");
-  const dispatch = useDispatch();
-  const [chatId, setChatId] = React.useState("6318d5cf0ac6538490d5d471");
+  const dispatch = useDispatch(); 
+  const [chatId, setChatId] = React.useState(allMessages[0].chat);
+  console.log(chatId);
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
   console.log(messageList);
@@ -44,7 +45,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const messageListComponents = messageList.map((message) => {
     return (
       <div>
-        <Messcard content={message.content} />
+        <Messcard classname={message.sender === user.user._id?"mess-content-right":"mess-content-left"} content={message.content} />
       </div>
     );
   });
