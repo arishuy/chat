@@ -1,8 +1,41 @@
-import React from "react";
+
+import io from "socket.io-client";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllMessagesAsync } from "../../redux/Slices/MessageSlice";
+import { useNavigate } from "react-router";
+import { selectAuth } from "../../redux/Slices/AuthSlice";
+import { Link } from "react-router-dom";
+
 
 const Usercard = (props) => {
+  var socket = io("http://localhost:5000", { transports: ["websocket"] });
+  let navigate = useNavigate();
+  const [allMessages, setAllMessages] = React.useState([]);
+  console.log(allMessages);
+  const dispatch = useDispatch();
+  const [chatId, setChatId] = React.useState("6318d5cf0ac6538490d5d471");
+  const [messageList, setMessageList] = React.useState([]);
+  console.log(messageList);
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
+  const allMessagesData = useSelector((state) => state.message);
+  console.log(allMessagesData);
+  const handleClick = async () => {
+    console.log("clicked");
+    await dispatch(getAllMessagesAsync(chatId));
+    
+    //socket.emit("reloadAllMessages", (allMessagesData, chatId));
+    navigate("/Message_ChatWindow");
+  };
+  // useEffect(() => {
+  //   console.log("useEffect");
+  //   socket.on("reloadAllMessages", (data) => {
+  //     setMessageList(data);
+  //   });
+  // }, [dispatch]);
   return (
-    <div className="message-content">
+    <div className="message-content" onClick={handleClick} key = {props.chatId}>
       <div className="contact-avatar kimochi">
         <img
           className="avatar__image"
@@ -18,6 +51,6 @@ const Usercard = (props) => {
       </div>
     </div>
   );
-};
+};;
 
 export default Usercard;

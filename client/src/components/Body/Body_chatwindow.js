@@ -4,12 +4,13 @@ import Sidebar from '../Sidebar'
 import "../../scss/components/Body.css"
 import io from "socket.io-client";
 
-const Body_chatwindow = () => {
-   var socket = io("http://localhost:5000", { transports: ["websocket"] });
+const Body_chatwindow = ({ user, reloadMessages }) => {
+  var socket = io("http://localhost:5000", { transports: ["websocket"] });
+  console.log(reloadMessages);
   return (
     <div id="body">
       <Sidebar />
-        <Chatwindow socket={socket} />
+      <Chatwindow user={user} reloadMessages={reloadMessages} socket={socket} />
     </div>
   )
 }

@@ -41,7 +41,6 @@ const MessageSlice = createSlice({
   extraReducers: {
     [createNewMessageAsync.fulfilled]: (state, action) => {
       console.log("adding data successfully");
-     state.push(action.payload);
     },
     [getAllMessagesAsync.fulfilled]: (state, action) => {
       console.log("fetching data successfully");

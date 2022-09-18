@@ -7,26 +7,34 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectAuth } from "../redux/Slices/AuthSlice";
 import { getCurrentState } from "../redux/Slices/AuthSlice";
 import { createNewMessageAsync } from "../redux/Slices/MessageSlice";
+import ScrollToBottom from "react-scroll-to-bottom";
+import io from "socket.io-client";
 
-const Chatwindow = ({ chatId, socket }) => {
-   const dispatch = useDispatch();
+const Chatwindow = ({ user, reloadMessages, socket }) => {
+  const allMessages = [...reloadMessages.messages];
+  console.log("1");
+  const dispatch = useDispatch();
+  const [chatId, setChatId] = React.useState("6318d5cf0ac6538490d5d471");
   const [currentMessage, setCurrentMessage] = React.useState("");
-  //console.log(currentMessage);
-  const [messageList, setMessageList] = React.useState([]);
+  const [messageList, setMessageList] = React.useState(allMessages);
+  console.log(messageList);
+  console.log(chatId);
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        chat: "6318d5cf0ac6538490d5d471",
+        sender: user.user._id,
+        chat: chatId,
         content: currentMessage,
       };
+      console.log(messageData);
       await socket.emit("send_message", messageData);
-      await socket.emit("inChat", messageData);
       setMessageList((list) => [...list, messageData]);
-      dispatch(createNewMessageAsync(messageData));
+      await dispatch(createNewMessageAsync(messageData));
       setCurrentMessage("");
     }
   };
   useEffect(() => {
+    console.log("useEffect");
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
     });
