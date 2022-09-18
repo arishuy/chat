@@ -8,14 +8,18 @@ import { getAllChatsAsync } from "../redux/Slices/ChatSlice"
 import {selectAuth} from "../redux/Slices/AuthSlice"
 
 const DashBoard = () => {
-  const auth = useSelector(selectAuth);
-  const [allChats, setAllChats] = React.useState([]);
-  console.log(auth);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllChatsAsync());
+  }, [dispatch]);
+  const auth = useSelector(selectAuth);
+  console.log(auth);
+   const allChats = useSelector((state) => state.chats.chats);
+   console.log(allChats);
   return (
     <div>
       <Header />
-      <Body />
+      <Body reloadAllChats={allChats} />
     </div>
   );
 };

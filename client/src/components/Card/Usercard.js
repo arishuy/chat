@@ -45,8 +45,7 @@ const Usercard = (props) => {
       <div className="message-text">
         <h1>{props.name}</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quidem.
+          {props.latestMessage}
         </p>
       </div>
     </div>
