@@ -5,19 +5,19 @@
 .content {
   float: right;
   display: flex;
-  margin-left: 100px;
+  margin-left: 6.25rem;
   width: 95%;
   height: 92vh;
 }
 .content .message {
-  padding-top: 20px;
+  padding-top: 1.25rem;
  
 }
 .content .message h1 {
   font-family: "Dancing Script";
 }
 .content .message .message-content {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: relative;
   width: 40vw;
   height: 10rem;
@@ -27,35 +27,35 @@
       rgba(121, 217, 252, 0) 100%
     ),
     #7ff0cb;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
   display: flex;
   justify-content: center;
 }
 
 .content .message .message-content .kimochi {
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 5.625rem;
+  height: 5.625rem;
   text-align: center;
   color: black;
-  margin: 20px 0px 50px 30px;
+  margin: 1.25rem 0rem 3.125rem 1.875rem;
 }
 .content .message .message-content .message-text {
   text-align: left;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: black;
   font-weight: bold;
 }
 .content .message .message-content h1 {
-  margin-top: 15px;
+  margin-top: 0.9375rem;
   grid-column: 2;
   grid-row: 1;
   font-family: "Inter";
   font-style: normal;
   font-weight: bold;
-  font-size: 28px;
-  line-height: 39px;
+  font-size: 1.5em;
+  line-height: 1.5em;
   color: black;
 }
 .content .message .message-content p {
@@ -64,72 +64,72 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
-  line-height: 39px;
+  font-size: 0.8em;
+  /* line-height: */
   color: black;
-  margin-top: -15px;
+  margin-top: -0.9375em;
 }
 .reminder1 {
   width: 43vw;
-  height: 200px;
+  height: 12.5rem;
   float: right;
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 .reminder1 .message {
-  margin-top: 15px;
-  margin-left: 100px;
+  margin-top: 0.9375rem;
+  margin-left: 6.25rem;
   position: relative;
-  width: 500px;
-  height: 100px;
+  width: 31.25rem;
+  height: 6.25rem;
   background: linear-gradient(
       180deg,
       rgba(121, 217, 252, 0.54) 0%,
       rgba(121, 217, 252, 0) 100%
     ),
     #7ff0cb;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  padding: 10px;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
+  padding: 0.625rem;
 }
 .reminder1 .message i {
-  width: 500px;
+  width: 31.25rem;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: black;
   font-weight: bold;
-  padding-top: 5px;
+  padding-top: 0.625/2rem;
 }
 .reminder1 .header-remind {
-  margin-left: 100px;
+  margin-left: 6.25rem;
   font-family: "Dancing Script";
   font-style: normal;
   font-weight: bold;
-  font-size: 32px;
-  line-height: 35px;
+  font-size: 2rem;
+  line-height: 2.1875rem;
   color: black;
 }
 .reminder1 .message h1 {
-  width: 284px;
-  height: 20px;
+  width: 17.75rem;
+  height: 1.25rem;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 39px;
-  margin-top: 0px;
-  margin-left: 10px;
+  font-size: 1.25rem;
+  line-height: 2.4375rem;
+  margin-top: 0rem;
+  margin-left: 0.625rem;
   color: #000000;
 }
 .reminder1 .message p {
-  width: 437px;
-  height: 27px;
+  width: 27.3125rem;
+  height: 1.6875rem;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
   color: #000000;
-  margin-left: 10px;
+  margin-left: 0.625rem;
 }
 @media screen and (max-width: 412px) {
   .content .message .message-content {

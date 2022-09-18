@@ -1,5 +1,5 @@
 .chat {
-  width: 100%;
+  width: calc(100vw - 5vw);
   display: flex;
 }
 .chat-profile {
@@ -20,7 +20,7 @@
 }
 .button-chat {
   width: 100%;
-  height: 40px;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@
     ),
     #7ff0cb;
   border-radius: 1px;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
 }
 .button-chat:hover {
@@ -40,22 +40,22 @@
 .contact-avatar-chat {
   width: 50%;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .chat-h1 {
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: bold;
   color: Black;
-  margin: 10px 0 10px 0;
+  margin: 0.625rem 0 0.625rem 0;
 }
 .chat-span {
   font-style: italic;
 }
 .button-group {
-  padding-top: 20px;
+  padding-top: 1.25rem;
 }
 .mess-content {
   width: fit-content;
@@ -65,8 +65,8 @@
   align-items: center;
   background: rgb(165, 157, 157);
   border-radius: 10px;
-  margin: 10px 0 10px 100px;
-  padding: 10px 10px 10px 10px;
+  margin: 0.625rem 0 0.625rem 6.25rem;
+  padding: 0.625rem 0.625rem 0.625rem 0.625rem;
 }
 .chat-content__message {
   width: 100%;
@@ -93,17 +93,17 @@
 .chat-content__input .send {
   position: absolute;
   left: 8.5%;
-  padding: 5px 0 0 10px;
-  font-size: 18px;
+  padding: 0.3125rem 0 0 0.625rem;
+  font-size: 1.125rem;
 }
 
 .chat-content__input input {
   width: 80%;
-  height: 45px;
-  padding-left: 50px;
-  font-size: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 2.8125rem;
+  padding-left: 3.125rem;
+  font-size: 1.5625rem;
+  border-radius: 0.625rem;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border: none;
   background: linear-gradient(180deg, #d9d9d9 0%, rgba(217, 217, 217, 0) 100%);
 }
@@ -113,26 +113,26 @@
 }
 .chat-content__input input::placeholder {
   font-style: italic;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: rgb(67, 67, 67);
 }
 .chat-content__input .image {
   position: absolute;
   right: 17%;
-  padding: 5px 0 0 10px;
-  font-size: 22px;
+  padding: 0.3125rem 0 0 0.625rem;
+  font-size: 1.375rem;
 }
 .chat-content__input .like {
   position: absolute;
   right: 10%;
-  padding: 5px 0 0 10px;
-  font-size: 22px;
+  padding: 0.3125rem 0 0 0.625rem;
+  font-size: 1.375rem;
 }
 .chat-content__input .file {
   position: absolute;
   right: 13.5%;
-  padding: 5px 0 0 10px;
-  font-size: 22px;
+  padding: 0.3125rem 0 0 0.625rem;
+  font-size: 1.375rem;
 }
 .chat-content__input i:hover {
   color: #26c1af;
