@@ -6,6 +6,7 @@
     background-color:white;
     display: flex;
     font-family: poppins;
+    /* border-radius: 0.5rem; */
     border-bottom: 2px solid rgb(175, 174, 174);
 }
 .notificationcard-container img{

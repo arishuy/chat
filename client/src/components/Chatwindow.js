@@ -88,7 +88,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
           />
           <i class="fa-solid fa-image image"></i>
           <i class="fa-solid fa-file file"></i>
-          <i class="fa-solid fa-thumbs-up like" onClick={sendMessage}></i>
+          <i class="fa-solid fa-angles-right like" onClick={sendMessage}></i>
         </div>
       </div>
     </div>

@@ -10,8 +10,7 @@
 }
 .notification-bell{
     margin-top: 8.25rem;
-    position: relative;
-    left: 45%;
+    width: 0;
 }
 .notification-bell:hover{
     cursor: pointer;
@@ -34,10 +33,9 @@
 }
 
 .notification-list{
-    position: relative;
-    top: 0.7em;
-    box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-
-    
+    position: absolute;
+    right: -1.5em;
+    top: 11em;
+    border-radius: 0.5em;
 }
   
