@@ -24,7 +24,7 @@ exports.addNewFriend = catchAsync(async (req, res,next) => {
   if (friend.friends.includes(req.user._id)) {
     return next(new AppError(`You are already friends with this user`, 400));
   }
-  if (friend.waitingAcceptedFriends.includes(req.body.id)) {
+  if (friend.waitingRequestFriends.includes(req.user._id)){ 
     return next(new AppError(`You have already sent a request to this user`, 400)
     );
   }
