@@ -16,7 +16,7 @@ const People = () => {
     dispatch(getUserByIdAsync(userId)).then((res) => {
       setPeople(res.payload.data.data.user);
     });
-  }, []);
+  }, [dispatch]);
   console.log(people);
   const friendElements = people.friends.map((friend) => {
     return <Friendcard key={friend._id} name={friend.name} />;
@@ -37,11 +37,8 @@ const People = () => {
       <div className="main-content">
         <div className="total-friends">
           <h1>Total Friends</h1>
-    
-          <div className="friends">
-            {friendElements}
-          </div>
 
+          <div className="friends">{friendElements}</div>
         </div>
         <div className="friend-request">
           <h1>Friend Requests</h1>
