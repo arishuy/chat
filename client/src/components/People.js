@@ -4,6 +4,7 @@ import Friendcard from "./Card/Friendcard";
 import Requestcard from "./Card/Requestcard";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
+import { Link } from "react-router-dom";
 
 const People = () => {
   const [people, setPeople] = React.useState([]);
@@ -18,10 +19,20 @@ const People = () => {
   }, [dispatch]);
   console.log(people);
   const friendElements = people.friends?.map((friend) => {
-    return <Friendcard key={friend._id} name={friend.name} />;
+    return (
+      <Link to={`/PersonalPage/${friend._id}`}>
+        <Friendcard key={friend._id} name={friend.name} />
+      </Link>
+    );
   });
   const requestElements = people.waitingRequestFriends?.map((request) => {
-    return <Requestcard key={request._id} name={request.name} />;
+    return (
+      <Link to={`/PersonalPage/${request._id}`}>
+        <Requestcard key={request._id} name={request.name} />;
+      </Link>
+    );
+
+   
   });
   return (
     <div className="people">
