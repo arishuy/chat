@@ -4,8 +4,8 @@ import Body from "../components/Body/Body";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loginAsync } from "../redux/Slices/AuthSlice";
-import { getAllChatsAsync } from "../redux/Slices/ChatSlice"
-import {selectAuth} from "../redux/Slices/AuthSlice"
+import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
+import { selectAuth } from "../redux/Slices/AuthSlice";
 import Notification from "../components/Notification";
 
 const DashBoard = () => {
@@ -15,8 +15,7 @@ const DashBoard = () => {
   }, [dispatch]);
   const auth = useSelector(selectAuth);
   console.log(auth);
-   const allChats = useSelector((state) => state.chats.chats);
-   console.log(allChats);
+  const allChats = useSelector((state) => state.chats.chats);
   return (
     <div>
       <Header />

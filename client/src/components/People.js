@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import "../scss/components/People.css";
 import Friendcard from "./Card/Friendcard";
-import Requestcard from "./Card/Requestcard";
-import io from "socket.io-client";
+// import Requestcard from "./Card/Requestcard";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 

@@ -4,11 +4,12 @@ export const getAllChatsAsync = createAsyncThunk(
   "chats/getAllchatAsync",
   async () => {
     console.log("fetching data");
+    console.log(localStorage.getItem("token"));
     const data = await Axios.get("http://localhost:5000/api/chat", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    })
+    });
     return data;
   }
 );

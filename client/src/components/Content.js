@@ -8,7 +8,7 @@ import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 const Content = ({reloadAllChats}) => {
   const allChats = [...reloadAllChats];
   console.log(allChats);
-  const allChatsElements = allChats?.map((chat) => {
+  const allChatsElements = allChats.map((chat) => {
     return <Usercard key={chat._id} name={chat.chatName} latestMessage={chat.latestMessage.content} />
   },[]);
   return (
