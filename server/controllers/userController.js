@@ -1,6 +1,8 @@
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const Chat = require("../models/chatModel");
+
 
 exports.getAllFriends = catchAsync(async (req, res) => {
   const friends = await User.findById(req.user._id)
