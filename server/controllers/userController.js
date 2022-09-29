@@ -59,10 +59,16 @@ exports.acceptFriend = catchAsync(async (req, res) => {
   await User.findByIdAndUpdate(req.user._id, {
     $pull: { waitingRequestFriends: req.body.id },
   });
+  const chat = await Chat.create({
+    chatName: `${req.user.name} and ${friend.name}`,
+    isGroupChat: false,
+    users: [req.user._id, req.body.id],
+  });
   res.status(200).json({
     status: "success",
     data: {
       friends: friend,
+      chat: chat,
     },
   });
 });
