@@ -50,7 +50,7 @@ export const getUserByIdAsync = createAsyncThunk(
   "user/getUserByIdAsync",
   async (userId) => {
     console.log("fetching data");
-    const data = await Axios.get(`http://localhost:5000/api/user/{${userId}}`, {
+    const data = await Axios.get(`http://localhost:5000/api/user/${userId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
