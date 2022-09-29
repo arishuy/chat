@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import "../scss/components/People.css";
 import Friendcard from "./Card/Friendcard";
-import Requestcard from "./Card/Requestcard";
-import io from "socket.io-client";
+// import Requestcard from "./Card/Requestcard";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 
@@ -16,7 +15,7 @@ const People = () => {
     dispatch(getUserByIdAsync(userId)).then((res) => {
       setPeople(res.payload.data.data.user);
     });
-  }, []);
+  }, [dispatch]);
   console.log(people);
   const friendElements = people.friends?.map((friend) => {
     return <Friendcard key={friend._id} name={friend.name} />;
@@ -36,11 +35,8 @@ const People = () => {
       <div className="main-content">
         <div className="total-friends">
           <h1>Total Friends</h1>
-    
-          <div className="friends">
-            {friendElements}
-          </div>
 
+          <div className="friends">{friendElements}</div>
         </div>
         <div className="friend-request">
           <h1>Friend Requests</h1>
