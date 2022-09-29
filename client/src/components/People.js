@@ -18,9 +18,9 @@ const People = () => {
     });
   }, []);
   console.log(people);
-  // const friendElements = people.friends.map((friend) => {
-  //   return <Friendcard key={friend._id} name={friend.name} />;
-  // });
+  const friendElements = people.friends.map((friend) => {
+    return <Friendcard key={friend._id} name={friend.name} />;
+  });
 
   return (
     <div className="people">
@@ -37,7 +37,11 @@ const People = () => {
       <div className="main-content">
         <div className="total-friends">
           <h1>Total Friends</h1>
-          <div className="friends"></div>
+    
+          <div className="friends">
+            {friendElements}
+          </div>
+
         </div>
         <div className="friend-request">
           <h1>Friend Requests</h1>
