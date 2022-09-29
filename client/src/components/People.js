@@ -18,10 +18,9 @@ const People = () => {
     });
   }, [dispatch]);
   console.log(people);
-  const friendElements = people.friends.map((friend) => {
+  const friendElements = people.friends?.map((friend) => {
     return <Friendcard key={friend._id} name={friend.name} />;
   });
-
   return (
     <div className="people">
       <div className="search-bounder">
