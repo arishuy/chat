@@ -9,6 +9,7 @@ import Reminder from "../pages/Reminder";
 import Setting from "../pages/Setting";
 import Login from "../pages/Login";
 import Empty from "../pages/Empty";
+import PersonalPage from "../pages/PersonalPage";
 
 function routes() {
   return (
@@ -19,6 +20,7 @@ function routes() {
       <Route path="/Message_ChatWindow" element={<Message_ChatWindow />} />
       <Route path="/Message_Contact" element={<Message_Contact />} />
       <Route path="/People" element={<People />} />
+      <Route path="/PersonalPage/:id" element={<PersonalPage/>} />
       <Route path="/Reminder" element={<Reminder />} />
       <Route path="/Setting" element={<Setting />} />
     </Routes>

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { loginAsync } from "../redux/Slices/AuthSlice";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice"
 import {selectAuth} from "../redux/Slices/AuthSlice"
+import Notification from "../components/Notification";
 
 const DashBoard = () => {
   const dispatch = useDispatch();

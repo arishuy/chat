@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.notificationcard-container{
+    width: 24rem;
+    height: 5rem;
+    background-color:white;
+    display: flex;
+    font-family: poppins;
+    border-bottom: 2px solid rgb(175, 174, 174);
+}
+.notificationcard-container img{
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    align-self: center;
+    padding-left: 0.5em;
+    justify-self: flex-start;
+}
+
+.notificationcard-content{
+    display: block;
+    width: 75%;
+    padding-left: 0.5em;
+}
+.notificationcard-content-nametime{
+    display: flex;
+    padding-top: 0.5em;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.notificationcard-content-name{
+    font-size: 1.2em;
+    font-style: bold;
+}
+
+.notificationcard-content-time{
+    align-items: flex-end;
+}
+
+.notificationcard-content-notifcontent{
+    width: 100%;
+}
+
+

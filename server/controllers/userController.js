@@ -1,8 +1,11 @@
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/appError");
 
 exports.getAllFriends = catchAsync(async (req, res) => {
-  const friends = await User.findById(req.user._id).populate("friends").select("friends");
+  const friends = await User.findById(req.user._id)
+    .populate("friends")
+    .select("friends");
   res.status(200).json({
     status: "success",
     data: {
@@ -11,12 +14,73 @@ exports.getAllFriends = catchAsync(async (req, res) => {
   });
 });
 
-exports.addNewFriend = catchAsync(async (req, res, next) => {
+exports.addNewFriend = catchAsync(async (req, res,next) => {
   const friend = await User.findById(req.body.id);
-  if (!friend) { 
+  if (!friend) {
     return next(new AppError(`No user found with that ID`, 404));
   }
-  await User.findByIdAndUpdate(req.user._id, { $push: {friends: req.body.id }});
-  next();
+  if (friend.friends.includes(req.user._id)) {
+    return next(new AppError(`You are already friends with this user`, 400));
+  }
+  if (friend.waitingAcceptedFriends.includes(req.body.id)) {
+    return next(new AppError(`You have already sent a request to this user`, 400)
+    );
+  }
+  const user = await User.findByIdAndUpdate(req.user._id, {
+    $push: { waitingAcceptedFriends: req.body.id },
+  });
+  await User.findByIdAndUpdate(req.body.id, {
+    $push: { waitingRequestFriends: req.user._id },
+  });
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: user,
+    },
+  });
 });
 
+exports.acceptFriend = catchAsync(async (req, res) => {
+  const friend = await User.findById(req.body.id);
+  if (!friend) {
+    return next(new AppError(`No user found with that ID`, 404));
+  }
+  await User.findByIdAndUpdate(req.user._id, {
+    $push: { friends: req.body.id },
+  });
+  await User.findByIdAndUpdate(req.body.id, {
+    $push: { friends: req.user._id },
+  });
+  await User.findByIdAndUpdate(req.body.id, {
+    $pull: { waitingAcceptedFriends: req.user._id },
+  });
+  await User.findByIdAndUpdate(req.user._id, {
+    $pull: { waitingRequestFriends: req.body.id },
+  });
+  res.status(200).json({
+    status: "success",
+    data: {
+      friends: friend,
+    },
+  });
+});
+
+exports.getUserById = async (req, res) => {
+  const user  = await User.findById(req.params.id);
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: user,
+    },
+  });
+};
+
+// exports.getFriendRequestsByUserID = async (req, res) => {
+//   const waitingRequestFriends = await User.findById(req.user._id);
+//   res.status(200).json({
+//     status: "success",
+//     data: {
+//       user: waitingRequestFriends,
+//     },
+//   });
+// };

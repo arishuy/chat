@@ -1,8 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 const Friendcard = (props) => {
+  const navigate = useNavigate();
+  function handleClick() {
+    console.log('click');                                   
+    navigate("/PersonalPage/6332e98c060472cef92f31cc");
+  }
   return (
-    <div className="friend-info">
+    <div className="friend-info" onClick={handleClick}>
               <div className="contact-avatar">
                 <img
                   className="avatar__image"

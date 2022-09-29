@@ -58,4 +58,7 @@ col-third {
   .navigation {
     display: none;
   }
+  .chat-profile {
+    display: none;
+  }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "../scss/components/People.css";
 import Friendcard from "./Card/Friendcard";
 import Requestcard from "./Card/Requestcard";
+import io from "socket.io-client";
 const People = () => {
   return (
     <div className="people">
