@@ -42,6 +42,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       </div>
     );
   });
+   
   return (
     <div className="chat">
       <div className="chat-profile">

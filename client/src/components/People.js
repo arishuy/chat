@@ -20,14 +20,14 @@ const People = () => {
   console.log(people);
   const friendElements = people.friends?.map((friend) => {
     return (
-      <Link to={`/PersonalPage/${friend._id}`}>
+      <Link className="link-friend" to={`/PersonalPage/${friend._id}`}>
         <Friendcard key={friend._id} name={friend.name} />
       </Link>
     );
   });
   const requestElements = people.waitingRequestFriends?.map((request) => {
     return (
-      <Link to={`/PersonalPage/${request._id}`}>
+      <Link className="link-request" to={`/PersonalPage/${request._id}`}>
         <Requestcard key={request._id} name={request.name} />;
       </Link>
     );
@@ -49,7 +49,6 @@ const People = () => {
       <div className="main-content">
         <div className="total-friends">
           <h1>Total Friends</h1>
-
           <div className="friends">{friendElements}</div>
         </div>
         <div className="friend-request">
