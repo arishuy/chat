@@ -121,4 +121,13 @@
 .x:hover {
     background-color: rgb(194, 34, 34);
 }
+.link-friend, .link-request {
+    text-decoration: none;
+    color: black;
+}
+.friends
+{
+    overflow: scroll;
+    overflow-x: hidden;
+}
 
