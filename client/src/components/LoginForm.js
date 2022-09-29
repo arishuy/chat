@@ -64,6 +64,11 @@ const LoginForm = () => {
                 onChange={() => {
                   setPassword(event.target.value);
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit(e);
+                  }
+                }}
               />
               <label>Password</label>
             </div>
