@@ -4,9 +4,11 @@ const router = express.Router();
 
 const userController = require("../controllers/userController");
 const User = require("../models/userModel");
-
-router.post("/friends", userController.addNewFriend);
+router.get("/:id",userController.getUserById);
 router.get("/friends", userController.getAllFriends);
+//router.get("/friendRequests", userController.getFriendRequestsByUserID);
+router.post("/addFriend", userController.addNewFriend);
+router.post("/acceptFriend", userController.acceptFriend);
 
 
 module.exports = router;

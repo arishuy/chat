@@ -7,20 +7,20 @@ const userSchema = mongoose.Schema(
   {
     name: {
       type: "String",
-      required: [true, "Please provide a name"]
+      required: [true, "Please provide a name"],
     },
     email: {
       type: "String",
       unique: true,
       required: true,
       lơwercase: true,
-      validate: [validator.isEmail, "Please provide a valid email"]
+      validate: [validator.isEmail, "Please provide a valid email"],
     },
     password: {
       type: "String",
       required: [true, "Please provide a password"],
       minlength: 6,
-      select: false
+      select: false,
     },
     passwordConfirm: {
       type: "String",
@@ -30,8 +30,8 @@ const userSchema = mongoose.Schema(
         validator: function (el) {
           return el === this.password;
         },
-        message: "Password are not the same"
-      }
+        message: "Password are not the same",
+      },
     },
     pic: {
       type: "String",
@@ -45,23 +45,32 @@ const userSchema = mongoose.Schema(
       default: false,
     },
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    waitingAcceptedFriends: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    ],
+    waitingRequestFriends: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    ],
     passwordChangedAt: Date,
   },
   { timestaps: true }
 );
 
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
   next();
-})
+});
 
-userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
   return await bcrypt.compare(candidatePassword, userPassword);
-}
+};
 
-userSchema.methods.changedPasswordAfter = function (JWTTimestamp) { 
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   console.log("1");
   console.log(this.passwordChangedAt);
   if (this.passwordChangedAt) {
@@ -73,9 +82,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   }
   // False means NOT changed
   return false;
-}
+};
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-
-  
