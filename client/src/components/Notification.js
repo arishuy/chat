@@ -12,7 +12,7 @@ const Notification = () => {
   return (
     <div className="notification">
       <div className="notification-bell" onClick={handleNotification}>
-        <div class="notification-circle">1</div>
+        <div class="notification-circle">4</div>
         <i class="fa-solid fa-bell fa-xl"></i>
       </div>
       {isDisplay &&
