@@ -66,7 +66,7 @@ exports.acceptFriend = catchAsync(async (req, res) => {
 });
 
 exports.getUserById = async (req, res) => {
-  const user  = await User.findById(req.params.id);
+  const user  = await User.findById(req.params.id).populate("waitingRequestFriends").populate("friends");
   res.status(200).json({
     status: "success",
     data: {

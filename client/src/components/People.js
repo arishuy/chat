@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../scss/components/People.css";
 import Friendcard from "./Card/Friendcard";
 import Requestcard from "./Card/Requestcard";
 import io from "socket.io-client";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserByIdAsync } from "../redux/Slices/UserSlice";
+
 const People = () => {
+  const [people, setPeople] = React.useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth);
+  console.log(user);
+  const userId = user[0].user._id;
+  useEffect(() => {
+    dispatch(getUserByIdAsync(userId)).then((res) => {
+      setPeople(res.payload.data.data.user);
+    });
+  }, []);
+  console.log(people);
+  // const friendElements = people.friends.map((friend) => {
+  //   return <Friendcard key={friend._id} name={friend.name} />;
+  // });
+
   return (
     <div className="people">
       <div className="search-bounder">
@@ -19,18 +37,7 @@ const People = () => {
       <div className="main-content">
         <div className="total-friends">
           <h1>Total Friends</h1>
-          <div className="friends">
-            <Friendcard name="Huy Bui" />
-            <Friendcard name="Uyen Hoang" />
-            <Friendcard name="Do Khoi" />
-            <Friendcard name="Thao Quyen" />
-            <Friendcard name="Vinh Nhan" />
-            <Friendcard name="Ngoc Hai" />
-            <Friendcard name="Hung Nguyen" />
-            <Friendcard name="Huu Huy" />
-            <Friendcard name="Vinh Quang" />
-            <Friendcard name="Chau Anh" />
-          </div>
+          <div className="friends"></div>
         </div>
         <div className="friend-request">
           <h1>Friend Requests</h1>

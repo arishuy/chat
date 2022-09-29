@@ -9,7 +9,7 @@ const PersonalContent = () => {
   const params = useParams();
   const [personId, setPersonId] = React.useState(params.id);
   const dispatch = useDispatch();
-  const handleAddingFriend = () => { 
+  const handleAddingFriend = () => {
     dispatch(addNewFriendAsync({
       id: personId
     }));
