@@ -15,7 +15,9 @@ const Content = ({reloadAllChats}) => {
     <div className="content col-full">
       <div className="message col-half">
         <h1>Message</h1>
+        <div className="message__content">
         {allChatsElements}
+        </div>
       </div>
       <div className="reminder1 col-half">
         <div className="header-remind">Reminder</div>

@@ -73,9 +73,13 @@
   color: rgb(67, 67, 67);
 }
 .contact-message {
-  padding-left: 2.8125rem;
+  height: calc(92vh - 23vh);
+  padding-left: 2rem;
   padding-top: 1.25rem;
-  padding-right: 1.25rem;
+  padding-right: 1.25rem; 
+  overflow: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 .message-content {
   margin-top: 1.25rem;
@@ -139,4 +143,16 @@
   font-weight: none;
   position: absolute;
   right: 0.9375em;
+}
+.contact-message::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.contact-message::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.contact-message::-webkit-scrollbar-thumb {
+  background: rgba(35, 194, 119, 0.577);
+}
+.contact-message::-webkit-scrollbar-thumb:hover {
+  background: rgb(16, 160, 179);
 }
