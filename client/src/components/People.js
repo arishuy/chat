@@ -4,17 +4,21 @@ import Friendcard from "./Card/Friendcard";
 import Requestcard from "./Card/Requestcard";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { FindUserByNameAsync } from "../redux/Slices/UserSlice";
 
 const People = () => {
-  const [people, setPeople] = React.useState([]);
+  //const [people, setPeople] = React.useState([]);
   const dispatch = useDispatch();
+  const dispatch1 = useDispatch();
+  const [currentInput, setCurrentInput] = React.useState("");
   const user = useSelector((state) => state.auth);
+  const people = useSelector((state) => state.user);
+  const navigate1 = useNavigate();
   console.log(user);
   const userId = user[0].user._id;
   useEffect(() => {
-    dispatch(getUserByIdAsync(userId)).then((res) => {
-      setPeople(res.payload.data.data.user);
+    dispatch(getUserByIdAsync(userId)).then((res) => { 
     });
   }, [dispatch]);
   console.log(people);
@@ -27,13 +31,14 @@ const People = () => {
   });
   const requestElements = people.waitingRequestFriends?.map((request) => {
     return (
-      <Link className="link-request" to={`/PersonalPage/${request._id}`}>
-        <Requestcard key={request._id} name={request.name} />;
-      </Link>
+        <Requestcard requestId={request._id} name={request.name} />
     );
-
-   
   });
+  function handleSearch() {
+    dispatch1(FindUserByNameAsync({ name: currentInput, email: currentInput })).then((res) => { 
+      navigate1(`/PersonalPage/${res.payload.data.userId}`);
+    });
+  }
   return (
     <div className="people">
       <div className="search-bounder">
@@ -43,6 +48,13 @@ const People = () => {
             type="text"
             class="container__input"
             placeholder="Search person..."
+            value={currentInput}
+            onChange={(e) => setCurrentInput(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
           />
         </div>
       </div>
@@ -53,9 +65,7 @@ const People = () => {
         </div>
         <div className="friend-request">
           <h1>Friend Requests</h1>
-          <div className="total-request">
-            {requestElements}
-          </div>
+          <div className="total-request">{requestElements}</div>
         </div>
       </div>
     </div>

@@ -83,6 +83,18 @@ exports.getUserById = async (req, res) => {
   });
 };
 
+exports.FindUserByName = catchAsync(async (req, res,next) => {
+  const user = await User.findOne({$or:[{name:req.body.name},{email:req.body.email}]});
+  if (!user) { 
+    return next(new AppError(`No user found with that name`, 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      userId: user._id,
+    },
+  });
+});
 // exports.getFriendRequestsByUserID = async (req, res) => {
 //   const waitingRequestFriends = await User.findById(req.user._id);
 //   res.status(200).json({

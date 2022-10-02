@@ -22,9 +22,10 @@ const Usercard = ({chatId,name,latestMessage}) => {
   console.log(allMessagesData);
   const handleClick = async () => {
     console.log("clicked");
-    await dispatch(getAllMessagesAsync(chatId));
+    dispatch(getAllMessagesAsync(chatId)).then((res) => { 
+      navigate("/Message_ChatWindow");
+    });
     //socket.emit("reloadAllMessages", (allMessagesData, chatId));
-    navigate("/Message_ChatWindow");
   };
   // useEffect(() => {
   //   console.log("useEffect");

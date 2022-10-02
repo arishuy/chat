@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const { Server } = require("socket.io");
+const userController = require("./controllers/userController");
+const chatController = require("./controllers/chatController");
 
 
 app.use(bodyParser.json());
@@ -51,10 +53,16 @@ io.on("connection", (socket) => {
     socket.to(chatId).emit("reloadAllMessages", data);
   })
 
+  socket.on("getAllChats", (data) => { 
+    socket.emit("reloadAllChats", );
+  })
+
+
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);
   });
 });
+
 
 app.all("*", (req, res, next) => {
     // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
@@ -62,6 +70,8 @@ app.all("*", (req, res, next) => {
     // err.statusCode = 404;
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
+
 
 // app.use((err, req, res, next) => {
 // //   err.statusCode = err.statusCode || 500;

@@ -9,6 +9,7 @@ router.get("/friends", userController.getAllFriends);
 //router.get("/friendRequests", userController.getFriendRequestsByUserID);
 router.post("/addFriend", userController.addNewFriend);
 router.post("/acceptFriend", userController.acceptFriend);
+router.post("/findUser", userController.FindUserByName);
 
 
 module.exports = router;
