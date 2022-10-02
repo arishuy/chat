@@ -42,7 +42,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       </div>
     );
   });
-   
+   console.log(allMessages[0]);
   return (
     <div className="chat">
       <div className="chat-profile">
@@ -52,7 +52,11 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
             src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
           ></img>
         </div>
-        <h1 className="chat-h1">Huy Bui</h1>
+        <h1 className="chat-h1">
+          {user.user._id === allMessages[0].sender
+            ? allMessages[0].receiverName
+            : allMessages[0].senderName}
+        </h1>
         <span className="chat-span">Active now</span>
         <div className="button-group">
           <Button title="Profile" />
