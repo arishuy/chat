@@ -4,26 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMessagesAsync } from "../../redux/Slices/MessageSlice";
 import { useNavigate } from "react-router";
 
-const Contactcard = (props) => {
+const Contactcard = ({chatId,name,latestMessage,time}) => {
   var socket = io("http://localhost:5000", { transports: ["websocket"] });
   let navigate = useNavigate();
-  const [allMessages, setAllMessages] = React.useState([]);
-  console.log(allMessages);
   const dispatch = useDispatch();
-  const [chatId, setChatId] = React.useState("6318d5cf0ac6538490d5d471");
-  const [messageList, setMessageList] = React.useState([]);
-  console.log(messageList);
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
-  const allMessagesData = useSelector((state) => state.message);
-  console.log(allMessagesData);
   const handleClick = async () => {
     console.log("clicked");
-    await dispatch(getAllMessagesAsync(chatId));
-    navigate("/Message_ChatWindow");
+    dispatch(getAllMessagesAsync(chatId)).then((res) => { 
+      socket.emit("getAllChats", chatId);
+      navigate("/Message_ChatWindow");
+    });
   };
   return (
-    <div className="message-content" onClick={handleClick} key={props.chatId}>
+    <div className="message-content" onClick={handleClick}>
       <div className="contact-avatar kimochi">
         <img
           className="avatar__image"
@@ -32,13 +25,12 @@ const Contactcard = (props) => {
         ></img>
       </div>
       <div className="message-text">
-        <h1>Huy Bui</h1>
+        <h1>{name}</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quidem.
+          {latestMessage}
         </p>
       </div>
-      <h3>two minutes ago</h3>
+      <h3>{time}</h3>
     </div>
   );
 };
