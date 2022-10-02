@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const Chat = require("../models/chatModel");
+const Message = require("../models/messageModel");
 
 
 exports.getAllFriends = catchAsync(async (req, res) => {
@@ -63,6 +64,11 @@ exports.acceptFriend = catchAsync(async (req, res) => {
     chatName: `${req.user.name} and ${friend.name}`,
     isGroupChat: false,
     users: [req.user._id, req.body.id],
+  });
+  const message = await Message.create({
+    sender: req.user._id,
+    chat: chat._id,
+    content: `You are now friends with ${friend.name}`,
   });
   res.status(200).json({
     status: "success",

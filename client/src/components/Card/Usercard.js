@@ -23,7 +23,6 @@ const Usercard = ({chatId,name,latestMessage}) => {
   const handleClick = async () => {
     console.log("clicked");
     dispatch(getAllMessagesAsync(chatId)).then((res) => { 
-      dispatch(get)
       navigate("/Message_ChatWindow");
     });
     //socket.emit("reloadAllMessages", (allMessagesData, chatId));
