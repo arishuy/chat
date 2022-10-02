@@ -16,7 +16,9 @@ const PersonalContent = () => {
   const handleAddingFriend = () => {
     dispatch(addNewFriendAsync({
       id: personId
-    }));
+    })).then((res) => { 
+      alert("Add friend successfully");
+    });
   }
 
    useEffect(() => {

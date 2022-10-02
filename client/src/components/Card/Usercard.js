@@ -8,13 +8,12 @@ import { selectAuth } from "../../redux/Slices/AuthSlice";
 import { Link } from "react-router-dom";
 
 
-const Usercard = (props) => {
+const Usercard = ({chatId,name,latestMessage}) => {
   var socket = io("http://localhost:5000", { transports: ["websocket"] });
   let navigate = useNavigate();
   const [allMessages, setAllMessages] = React.useState([]);
   console.log(allMessages);
   const dispatch = useDispatch();
-  const [chatId, setChatId] = React.useState("6318d5cf0ac6538490d5d471");
   const [messageList, setMessageList] = React.useState([]);
   console.log(messageList);
   const auth = useSelector((state) => state.auth);
@@ -23,10 +22,10 @@ const Usercard = (props) => {
   console.log(allMessagesData);
   const handleClick = async () => {
     console.log("clicked");
-    await dispatch(getAllMessagesAsync(chatId));
-    
+    dispatch(getAllMessagesAsync(chatId)).then((res) => { 
+      navigate("/Message_ChatWindow");
+    });
     //socket.emit("reloadAllMessages", (allMessagesData, chatId));
-    navigate("/Message_ChatWindow");
   };
   // useEffect(() => {
   //   console.log("useEffect");
@@ -35,7 +34,7 @@ const Usercard = (props) => {
   //   });
   // }, [dispatch]);
   return (
-    <div className="message-content" onClick={handleClick} key = {props.chatId}>
+    <div className="message-content" onClick={handleClick}>
       <div className="contact-avatar kimochi">
         <img
           className="avatar__image"
@@ -43,9 +42,9 @@ const Usercard = (props) => {
         ></img>
       </div>
       <div className="message-text">
-        <h1>{props.name}</h1>
+        <h1>{name}</h1>
         <p className="message-text__p">
-          {props.latestMessage}
+          {latestMessage}
         </p>
       </div>
     </div>

@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../scss/components/Contact.css";
 import Contactcard from "./Card/Contactcard";
 import Photo from "./Card/Photo";
+import { io } from "socket.io-client";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 const Contact = () => {
+  var socket = io("http://localhost:5000", { transports: ["websocket"] });
+  const [chats, setChats] = React.useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => { 
+    dispatch(getAllChatsAsync()).then((res) => {
+      setChats(res.payload.data.data.chats);
+    });
+  }, [dispatch]);
+  const chat = useSelector((state) => state.chat);
+  console.log(chat);
+
+  // useEffect(() => { 
+  //   socket.on("reloadAllChats", (data) => {
+  //     setChats(data);
+  //   });
+  // }, [io]);
+  
+  const allChats = useSelector((state) => state.chats.chats);
+  console.log(allChats);
+  const allChatsElement = allChats?.map((chat) => {
+    return (
+      <Contactcard
+        chatId={chat._id}
+        name={chat.chatName}
+        latestMessage={chat.latestMessage?.content}
+      />
+    );
+  });
+  
   return (
     <div className="contact-body">
       <div className="contact-content">
@@ -24,10 +56,7 @@ const Contact = () => {
         </div>
       </div>
       <div className="contact-message">
-        <Contactcard />
-        <Contactcard />
-        <Contactcard />
-        <Contactcard />
+        {allChatsElement}
       </div>
     </div>
   );

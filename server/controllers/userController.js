@@ -24,7 +24,7 @@ exports.addNewFriend = catchAsync(async (req, res,next) => {
   if (friend.friends.includes(req.user._id)) {
     return next(new AppError(`You are already friends with this user`, 400));
   }
-  if (friend.waitingAcceptedFriends.includes(req.body.id)) {
+  if (friend.waitingRequestFriends.includes(req.user._id)){ 
     return next(new AppError(`You have already sent a request to this user`, 400)
     );
   }
@@ -83,6 +83,18 @@ exports.getUserById = async (req, res) => {
   });
 };
 
+exports.FindUserByName = catchAsync(async (req, res,next) => {
+  const user = await User.findOne({$or:[{name:req.body.name},{email:req.body.email}]});
+  if (!user) { 
+    return next(new AppError(`No user found with that name`, 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      userId: user._id,
+    },
+  });
+});
 // exports.getFriendRequestsByUserID = async (req, res) => {
 //   const waitingRequestFriends = await User.findById(req.user._id);
 //   res.status(200).json({

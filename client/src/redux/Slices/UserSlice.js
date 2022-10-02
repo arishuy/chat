@@ -27,6 +27,7 @@ export const addNewFriendAsync = createAsyncThunk(
 export const acceptFriendAsync = createAsyncThunk(
   "user/acceptFriendAsync",
   async (payload) => {
+    console.log(payload);
     try {
       const response = await Axios.post(
         `http://localhost:5000/api/user/acceptFriend`,
@@ -59,10 +60,32 @@ export const getUserByIdAsync = createAsyncThunk(
   }
 );
 
+export const FindUserByNameAsync = createAsyncThunk(
+  "user/FindUserByNameAsync",
+  async (payload) => {
+    console.log(payload);
+    try {
+      const response = await Axios.post(
+        `http://localhost:5000/api/user/findUser`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const message = response.data;
+      console.log(message);
+      return message;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const UserSlice = createSlice({
   name: "user",
-  initialState: [],
+  initialState:{},
   reducers: {},
   extraReducers: {
     [addNewFriendAsync.fulfilled]: (state, action) => {
@@ -72,8 +95,15 @@ const UserSlice = createSlice({
       console.log("accepting friend successfully");
     },
     [getUserByIdAsync.fulfilled]: (state, action) => {
+      console.log(action.payload.data.data.user);
+      state = { ...action.payload.data.data.user };
+      // console.log(state);  
       console.log("getting user successfully");
+      return action.payload.data.data.user;
     },
+    [FindUserByNameAsync.fulfilled]: (state, action) => {
+      console.log("finding user successfully");
+    }
   },
 });
 
