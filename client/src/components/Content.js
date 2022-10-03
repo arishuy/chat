@@ -5,6 +5,8 @@ import Remindercard from "./Card/Remindercard";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
+import Rankcard from "./Card/Rankcard";
+import Topcard from "./Card/Topcard";
 const Content = ({reloadAllChats}) => {
   const allChats = [...reloadAllChats];
   console.log(allChats);
@@ -13,10 +15,11 @@ const Content = ({reloadAllChats}) => {
   },[]);
   return (
     <div className="content col-full">
-      <div className="message col-half">
-        <h1>Message</h1>
-        <div className="message__content">
-        {allChatsElements}
+      <div className="rank col-half">
+        <h1>
+          Ranking  <i class="fa-solid fa-ranking-star"></i></h1>
+        <div className="rank__content">
+        <Topcard />
         </div>
       </div>
       <div className="reminder1 col-half">
