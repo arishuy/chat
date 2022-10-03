@@ -15,14 +15,6 @@ const Contact = () => {
     });
   }, [dispatch]);
   const chat = useSelector((state) => state.chat);
-  console.log(chat);
-
-  // useEffect(() => { 
-  //   socket.on("reloadAllChats", (data) => {
-  //     setChats(data);
-  //   });
-  // }, [io]);
-  
   const allChats = useSelector((state) => state.chats.chats);
   console.log(allChats);
   const allChatsElement = allChats?.map((chat) => {
