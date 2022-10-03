@@ -29,14 +29,10 @@ const LoginForm = () => {
           navigate("/dashboard");
         });
         auth_context.login( auth.payload.token);
-        // console.log(auth.payload.data.user._id);
       }
     });
   }; 
 
-  // console.log("login", auth);
-  // console.log(password);
-  // console.log(username);
   return (
     <div>
       <div className="modal">

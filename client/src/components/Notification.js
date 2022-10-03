@@ -1,7 +1,6 @@
 import React from 'react'
 import '../scss/components/Notification.css'
 import Notificationcard from './Card/Notificationcard'
-import ScrollToBottom from "react-scroll-to-bottom";
 
 const Notification = () => {
   const [isDisplay, setIsDisplay] = React.useState(false);
