@@ -1,5 +1,6 @@
 const Chat = require("../models/chatModel");
 const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/appError");
 
 exports.createNewChat = catchAsync(async (req, res, next) => {
   const newChat = await Chat.create(req.body);
@@ -36,7 +37,12 @@ exports.getChatById = catchAsync(async (req, res, next) => {
 });
 
 exports.getChatId = catchAsync(async (req, res, next) => {
-  const chat = await Chat.findOne({users:[req.user._id,req.query.friendId]});
+  console.log(req.params.friendId);
+  const chat = await Chat.findOne({ users: { "$all": [req.user._id, req.params.friendId] } });
+  console.log(req.query.friendId);
+  if (!chat) { 
+    return new AppError("Chat not found");
+  }
   res.status(200).json({
     status: "success",
     data: {
