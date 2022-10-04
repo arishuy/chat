@@ -60,6 +60,7 @@
   position: absolute;
   top: 3.7rem;
   color: white;
+  z-index: 1;
 }
 .sub-navigation button {
   width: 100%;
