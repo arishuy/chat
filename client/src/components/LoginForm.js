@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../store/AuthContent";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
+import { getSocketStatus } from "../redux/Slices/SocketSlice";
 const LoginForm = () => {
 
   const auth_context = useContext(AuthContext);
@@ -25,6 +26,7 @@ const LoginForm = () => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {
       if (auth.payload.status === "success") {
+        dispatch(getSocketStatus());
         dispatchAllchats(getAllChatsAsync()).then(() => { 
           navigate("/dashboard");
         });
