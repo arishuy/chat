@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import "../scss/components/Contact.css";
 import Contactcard from "./Card/Contactcard";
 import Photo from "./Card/Photo";
-import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
+
 const Contact = () => {
-  var socket = io("http://localhost:5000", { transports: ["websocket"] });
   const [chats, setChats] = React.useState([]);
   const dispatch = useDispatch();
   useEffect(() => { 
@@ -16,7 +15,6 @@ const Contact = () => {
   }, [dispatch]);
   const chat = useSelector((state) => state.chat);
   const allChats = useSelector((state) => state.chats.chats);
-  console.log(allChats);
   const allChatsElement = allChats?.map((chat) => {
     return (
       <Contactcard

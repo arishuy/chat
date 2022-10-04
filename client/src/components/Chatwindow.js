@@ -16,10 +16,14 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = [...reloadMessages.messages];
   const dispatch = useDispatch();
   const [chatId, setChatId] = React.useState(allMessages[0].chat);
-  console.log(chatId);
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
    const [receiverName, setReceiverName] = useState("");
+
+   useEffect(() => {
+    socket.emit("inChat", chatId);
+   },[chatId])
+
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
@@ -27,8 +31,8 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         chat: chatId,
         content: currentMessage,
       };
-      await socket.emit("send_message", messageData);
       await socket.emit("inChat", chatId);
+      await socket.emit("send_message", messageData);
       await socket.emit("getAllChats", messageData);
       setMessageList((list) => [...list, messageData]);
       await dispatch(createNewMessageAsync(messageData));
@@ -40,7 +44,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
-  console.log(messageList);
   const messageListComponents = messageList?.map((message) => {
     return (
       <div>
@@ -56,7 +59,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     );
   });
   useEffect(() => { 
-    console.log("useEffect");
     const mes = allMessages?.find(
       (mes) => mes.sender !== user.user._id
     );

@@ -1,6 +1,5 @@
 import React from 'react'
 import '../../scss/components/Notificationcard.css'
-import Photo from './Photo';
 
 const Notificationcard = () => {
   return (

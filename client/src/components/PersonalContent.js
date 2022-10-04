@@ -2,16 +2,12 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useDispatch } from 'react-redux';
 import { addNewFriendAsync } from '../redux/Slices/UserSlice';
-import { useSelector} from 'react-redux';
-import io from "socket.io-client";
 import "../scss/components/PersonalContent.css";
 import { getUserByIdAsync } from '../redux/Slices/UserSlice';
 const PersonalContent = () => {
-  var socket = io("http://localhost:5000", { transports: ["websocket"] });
   const params = useParams();
   const [personId, setPersonId] = React.useState(params.id);
   const [person, setPerson] = React.useState({});
-  console.log(personId);
   const dispatch = useDispatch();
   const handleAddingFriend = () => {
     dispatch(addNewFriendAsync({
@@ -26,10 +22,7 @@ const PersonalContent = () => {
        setPerson(res.payload.data.data.user);
      });
    }, [dispatch]);
-  
-    console.log(person);
     const personName = person.name;
-    console.log(personName);
     return (
       <div className="personal-container">
         <div className="personal-content">

@@ -23,7 +23,6 @@ connectDB();
 const apiRoutes = require("./routes/api.routes");
 app.use("/api", apiRoutes);
 
-//console.log(apiRoutes);
 const server = http.createServer(app);
 server.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
@@ -39,8 +38,8 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
 
   console.log(`User Connected: ${socket.id}`);
+  
   socket.on("send_message", (data) => {
-    console.log(data);
     socket.to(data.chat).emit("receive_message", data);
   });
 
@@ -57,9 +56,8 @@ io.on("connection", (socket) => {
     socket.emit("reloadAllChats", );
   })
 
-
   socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
+    console.log("User Disconnected:", socket.id);
   });
 });
 

@@ -2,11 +2,10 @@ import React from 'react'
 import Chatwindow from '../Chatwindow'
 import Sidebar from '../Sidebar'
 import "../../scss/components/Body.css"
-import io from "socket.io-client";
+import { useSelector } from 'react-redux'
 
 const Body_chatwindow = ({ user, reloadMessages }) => {
-  var socket = io("http://localhost:5000", { transports: ["websocket"] });
-  
+  const socket = useSelector((state) => state.socket.socket);
   return (
     <div id="body">
       <Sidebar />

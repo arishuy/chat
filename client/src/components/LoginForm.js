@@ -21,7 +21,6 @@ const LoginForm = () => {
     email: username,
     password: password,
   };
-  console.log(auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {

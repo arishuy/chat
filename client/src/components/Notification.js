@@ -6,7 +6,6 @@ const Notification = () => {
   const [isDisplay, setIsDisplay] = React.useState(false);
   const handleNotification = () => {
     setIsDisplay(!isDisplay);
-    console.log(isDisplay);
   }
   return (
     <div className="notification">

@@ -8,7 +8,6 @@ const SocketSlice = createSlice({
     getSocketStatus: (state) => {
       const socket = io("http://localhost:5000",{transports: ['websocket', 'polling', 'flashsocket']});
      state = {socket};
-     console.log(state);
      return state;
     },
   },
