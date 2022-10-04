@@ -11,6 +11,9 @@ const Topcard = (props) => {
     <div className="top-content">
       <div>
         <div className="top-person st1">
+          <div className="crown">
+        <i class="fa-solid fa-crown"></i>
+        </div>
           <div className="top-avatar" onClick={handleClick}>
             <img
               className="top-person-img"
@@ -21,7 +24,7 @@ const Topcard = (props) => {
             {props.name}
             <p className="top-person-message">{props.amount}</p>
           </div>
-        <div className="block-card1">
+        <div className="block-card">
         </div>
         </div>
       </div>
@@ -36,7 +39,7 @@ const Topcard = (props) => {
         {props.name}
           <p className="top-person-message">{props.amount}</p>
         </div>
-        <div className="block-card2">
+        <div className="block-card">
         </div>
       </div>
       <div className="top-person st3">
@@ -50,7 +53,7 @@ const Topcard = (props) => {
         {props.name}
           <p className="top-person-message">{props.amount}</p>
         </div>
-        <div className="block-card3">
+        <div className="block-card">
         </div>
       </div>
     </div>
