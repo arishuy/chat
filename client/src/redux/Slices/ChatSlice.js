@@ -15,8 +15,7 @@ export const getAllChatsAsync = createAsyncThunk(
   export const getChatID = createAsyncThunk(
     "chats/getChatID",
     async (userID1, userID2) => {
-        const data = await Axios.get(
-          `http://localhost:5000/api/chat/getChatID`,{
+        const data = await Axios.get(`http://localhost:5000/api/chat`,{
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },

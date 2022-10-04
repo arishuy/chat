@@ -36,7 +36,8 @@ const PersonalContent = () => {
     })
     const handleMessage = () => {
         dispatch(getChatID(myID,person._id)).then((res) => {
-          navigate(`/Message_ChatWindow/${res.payload.data.data.chatID}`);
+          navigate(`/Message_ChatWindow/${res.payload.data.data.chats[0]._id}`);
+          // console.log(res.payload.data.data.chats[0]._id);
         });
     };
     const personName = person.name;

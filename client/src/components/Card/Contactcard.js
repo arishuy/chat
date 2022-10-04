@@ -8,7 +8,7 @@ const Contactcard = ({chatId,name,latestMessage,time}) => {
   const dispatch = useDispatch();
   const handleClick = async () => {
     dispatch(getAllMessagesAsync(chatId)).then((res) => { 
-      navigate("/Message_ChatWindow");
+      navigate("/Message_ChatWindow/" + chatId);
     });
   };
   return (

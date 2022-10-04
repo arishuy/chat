@@ -8,5 +8,6 @@ const Chat = require("../models/chatModel");
 router.post("/", chatController.createNewChat);
 router.get("/", chatController.getAllChats);
 router.get("/:id", chatController.getChatById);
+router.get("/getChatId/:friendId", chatController.getChatId);
 
 module.exports = router;

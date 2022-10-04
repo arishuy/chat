@@ -4,6 +4,7 @@ import AuthReducer from "./Slices/AuthSlice";
 import MessageReducer from "./Slices/MessageSlice";
 import UserReducer from "./Slices/UserSlice";
 import SocketReducer from "./Slices/SocketSlice";
+import NotificationReducer from "./Slices/NotificationSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     user: UserReducer,
     message: MessageReducer,
     socket: SocketReducer,
+    notifications: NotificationReducer,
   },
 });
