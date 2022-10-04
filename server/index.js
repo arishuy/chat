@@ -57,6 +57,11 @@ io.on("connection", (socket) => {
     socket.emit("reloadAllChats", );
   })
 
+  socket.on("send_notification", (data) => {
+    console.log(data);
+    socket.to(data.receiver).emit("receive_notification", data);
+  });
+
 
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);

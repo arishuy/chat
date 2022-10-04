@@ -2,7 +2,7 @@ import React from 'react'
 import '../../scss/components/Notificationcard.css'
 import Photo from './Photo';
 
-const Notificationcard = () => {
+const Notificationcard = ({name, date, content}) => {
   return (
     <div className="notificationcard-container">
       <img
@@ -12,10 +12,10 @@ const Notificationcard = () => {
       ></img>
       <div className="notificationcard-content">
         <div className="notificationcard-content-nametime">
-          <div className="notificationcard-content-name">Huy Bui</div>
-          <div className="notificationcard-content-time">1 hour ago</div>
+          <div className="notificationcard-content-name">{name}</div>
+          <div className="notificationcard-content-time">{date}</div>
         </div>
-        <div className="notificationcard-content-notifcontent">Huy Bui just sent you a message</div>
+        <div className="notificationcard-content-notifcontent">{content}</div>
       </div>
     </div>
   );

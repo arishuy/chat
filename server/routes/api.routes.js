@@ -14,4 +14,7 @@ router.use("/auth", authRoutes);
 const userRoutes = require("./user.routes");
 router.use("/user", authController.protect, userRoutes);
 
+const notificationRoutes = require("./notification.routes");
+router.use("/notification", authController.protect, notificationRoutes);
+
 module.exports = router;

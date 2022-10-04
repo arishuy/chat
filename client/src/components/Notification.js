@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../scss/components/Notification.css'
 import Notificationcard from './Card/Notificationcard'
 import ScrollToBottom from "react-scroll-to-bottom";
+import io from "socket.io-client";
 
 const Notification = () => {
+   var socket = io("http://localhost:5000", { transports: ["websocket"] });
   const [isDisplay, setIsDisplay] = React.useState(false);
+  const [notifications, setNotifications] = React.useState([]);
   const handleNotification = () => {
     setIsDisplay(!isDisplay);
     console.log(isDisplay);
   }
+  useEffect(() => { 
+    socket.on("receive_notification", (data) => {
+      setNotifications([...notifications, data]);
+      console.log(notifications);
+    });
+  });
+  console.log(notifications);
   return (
     <div className="notification">
       <div className="notification-bell" onClick={handleNotification}>
