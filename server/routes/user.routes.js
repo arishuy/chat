@@ -10,6 +10,7 @@ router.get("/friends", userController.getAllFriends);
 router.post("/addFriend", userController.addNewFriend);
 router.post("/acceptFriend", userController.acceptFriend);
 router.post("/findUser", userController.FindUserByName);
+router.delete("/deleteFriendRequest/:id", userController.deleteFriendRequest);
 
 
 module.exports = router;
