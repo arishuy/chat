@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import '../scss/components/Notification.css'
 import Notificationcard from './Card/Notificationcard'
 
 const Notification = () => {
-   var socket = io("http://localhost:5000", { transports: ["websocket"] });
+  const socket = useSelector(state => state.socket.socket);
   const [isDisplay, setIsDisplay] = React.useState(false);
   const [notifications, setNotifications] = React.useState([]);
   const handleNotification = () => {
