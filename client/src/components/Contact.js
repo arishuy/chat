@@ -13,13 +13,14 @@ const Contact = () => {
       setChats(res.payload.data.data.chats);
     });
   }, [dispatch]);
+  const username = useSelector((state) => state.auth[0].user.name);
   const chat = useSelector((state) => state.chat);
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {
     return (
       <Contactcard
         chatId={chat._id}
-        name={chat.chatName}
+        name={username===chat.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}
       />
     );
