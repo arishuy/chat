@@ -11,9 +11,22 @@ export const getAllChatsAsync = createAsyncThunk(
     });
     return data;
   }
-);
-const ChatSlice = createSlice({
-  name: "chats",
+  );
+  export const getChatID = createAsyncThunk(
+    "chats/getChatID",
+    async (userID1, userID2) => {
+        const data = await Axios.get(
+          `http://localhost:5000/api/chat/getChatID`,{
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        return data;
+      } 
+  );
+  const ChatSlice = createSlice({
+    name: "chats",
   initialState: [],
   reducers: {
   },

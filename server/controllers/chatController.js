@@ -36,11 +36,16 @@ exports.getChatById = catchAsync(async (req, res, next) => {
 });
 
 exports.getChatId = catchAsync(async (req, res, next) => {
-  const chat = await Chat.findOne({users:[req.user._id,req.query.friendId]});
+  // find chatID includes two ID users
+  const chat = await Chat.findOne({
+    users: { $all: [req.body.userID1, req.body.userID2] },
+  });
+  console.log(chat);
+  // const chat = await Chat.findOne({users:[req.user._id,req.query.friendId]});
   res.status(200).json({
     status: "success",
     data: {
-      chatId: chat,
+      chatId: chat._id,
     },
   })
 });

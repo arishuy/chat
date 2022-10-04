@@ -101,6 +101,7 @@ exports.FindUserByName = catchAsync(async (req, res,next) => {
     },
   });
 });
+
 // exports.getFriendRequestsByUserID = async (req, res) => {
 //   const waitingRequestFriends = await User.findById(req.user._id);
 //   res.status(200).json({

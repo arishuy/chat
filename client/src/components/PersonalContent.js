@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewFriendAsync } from '../redux/Slices/UserSlice';
-import { getAllMessagesAsync } from '../redux/Slices/MessageSlice';
+import { getChatID } from '../redux/Slices/ChatSlice';
 import "../scss/components/PersonalContent.css";
 import { getUserByIdAsync } from '../redux/Slices/UserSlice';
 const PersonalContent = () => {
@@ -35,9 +35,9 @@ const PersonalContent = () => {
       setIsFriend(r1);
     })
     const handleMessage = () => {
-      // dispatch().then((res) => { 
-      //   navigate("/Message_ChatWindow");
-      // });
+        dispatch(getChatID(myID,person._id)).then((res) => {
+          navigate(`/Message_ChatWindow/${res.payload.data.data.chatID}`);
+        });
     };
     const personName = person.name;
     return (
