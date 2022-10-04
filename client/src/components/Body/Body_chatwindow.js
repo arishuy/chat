@@ -6,7 +6,7 @@ import io from "socket.io-client";
 
 const Body_chatwindow = ({ user, reloadMessages }) => {
   var socket = io("http://localhost:5000", { transports: ["websocket"] });
-  console.log(reloadMessages);
+  
   return (
     <div id="body">
       <Sidebar />

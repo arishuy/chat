@@ -31,7 +31,7 @@ server.listen(process.env.PORT, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000/Message_ChatWindow",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
