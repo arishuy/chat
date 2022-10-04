@@ -16,7 +16,7 @@ const chatSchema = mongoose.Schema(
 
 //Document middleware: runs before .save() and .create()
 chatSchema.pre("save", async function (next) {
-  // console.log(this);
+  console.log(this);
 });
 
 const Chat = mongoose.model("Chat", chatSchema);

@@ -4,7 +4,7 @@ export const getAllChatsAsync = createAsyncThunk(
   "chats/getAllchatAsync",
   async () => {
     console.log("fetching data");
-    // console.log(localStorage.getItem("token"));
+    console.log(localStorage.getItem("token"));
     const data = await Axios.get("http://localhost:5000/api/chat", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -59,7 +59,7 @@ const ChatSlice = createSlice({
   extraReducers: {
     [getAllChatsAsync.fulfilled]: (state, action) => {
       console.log("fetching data successfully");
-      // console.log(action.payload.data.data);
+      console.log(action.payload.data.data);
        return action.payload.data.data;
     },  
   },

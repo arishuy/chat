@@ -16,10 +16,10 @@ export const addNewFriendAsync = createAsyncThunk(
         }
       );
       const message = response.data;
-      // console.log(message);
+      console.log(message);
       return message;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   }
 );
@@ -27,7 +27,7 @@ export const addNewFriendAsync = createAsyncThunk(
 export const acceptFriendAsync = createAsyncThunk(
   "user/acceptFriendAsync",
   async (payload) => {
-    // console.log(payload);
+    console.log(payload);
     try {
       const response = await Axios.post(
         `http://localhost:5000/api/user/acceptFriend`,
@@ -39,10 +39,10 @@ export const acceptFriendAsync = createAsyncThunk(
         }
       );
       const message = response.data;
-      // console.log(message);
+      console.log(message);
       return message;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   }
 );
@@ -50,7 +50,7 @@ export const acceptFriendAsync = createAsyncThunk(
 export const getUserByIdAsync = createAsyncThunk(
   "user/getUserByIdAsync",
   async (userId) => {
-    // console.log("fetching data");
+    console.log("fetching data");
     const data = await Axios.get(`http://localhost:5000/api/user/${userId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -63,7 +63,7 @@ export const getUserByIdAsync = createAsyncThunk(
 export const FindUserByNameAsync = createAsyncThunk(
   "user/FindUserByNameAsync",
   async (payload) => {
-    // console.log(payload);
+    console.log(payload);
     try {
       const response = await Axios.post(
         `http://localhost:5000/api/user/findUser`,
@@ -75,10 +75,10 @@ export const FindUserByNameAsync = createAsyncThunk(
         }
       );
       const message = response.data;
-      // console.log(message);
+      console.log(message);
       return message;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   }
 );
@@ -95,7 +95,7 @@ const UserSlice = createSlice({
       console.log("accepting friend successfully");
     },
     [getUserByIdAsync.fulfilled]: (state, action) => {
-      // console.log(action.payload.data.data.user);
+      console.log(action.payload.data.data.user);
       state = { ...action.payload.data.data.user };
       // console.log(state);  
       console.log("getting user successfully");

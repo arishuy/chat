@@ -9,6 +9,7 @@ const Contactcard = ({chatId,name,latestMessage,time}) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = async () => {
+    console.log("clicked");
     dispatch(getAllMessagesAsync(chatId)).then((res) => { 
       socket.emit("getAllChats", chatId);
       navigate("/Message_ChatWindow");
