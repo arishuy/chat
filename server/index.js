@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
-const { Server } = require("socket.io");
 const userController = require("./controllers/userController");
 const chatController = require("./controllers/chatController");
 
@@ -23,25 +22,29 @@ connectDB();
 const apiRoutes = require("./routes/api.routes");
 app.use("/api", apiRoutes);
 
-//console.log(apiRoutes);
 const server = http.createServer(app);
 server.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
 
-const io = new Server(server, {
+const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000/Message_ChatWindow",
-    methods: ["GET", "POST"],
+    origin: "http://localhost:3000/Message_Contact",
+    // methods: ["GET", "POST"],
   },
 });
 
 io.on("connection", (socket) => {
 
-  console.log(`User Connected: ${socket.id}`);
+  console.log("New client connected");
+  socket.on("setup", (userData) => {
+    socket.join(userData._id);
+    socket.emit("connected");
+  });
+  
   socket.on("send_message", (data) => {
-    console.log(data);
-    socket.to(data.chat).emit("receive_message", data);
+    console.log("gui");
+    io.to(data.chat).emit("receive_message", {data});
   });
 
   socket.on("inChat", (chatId) => { 
@@ -65,19 +68,9 @@ io.on("connection", (socket) => {
 
 
 app.all("*", (req, res, next) => {
-    // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-    // err.status = "fail";
-    // err.statusCode = 404;
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-
-
-// app.use((err, req, res, next) => {
-// //   err.statusCode = err.statusCode || 500;
-// //   err.status = err.status || "error";
-// //   res.status(err.statusCode).json({ status: err.status, message: err.message });
-// });
 
 app.use(globalErrorHandler);
 

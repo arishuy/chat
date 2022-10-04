@@ -9,14 +9,12 @@ import { useEffect } from "react";
 
 const Message_ChatWindow = () => {
   const allMessagesFromRedux = useSelector((state) => state.message);
-  console.log(allMessagesFromRedux);
   const [allMessages, setAllMessages] = React.useState(allMessagesFromRedux);
-  console.log(allMessages);
   const auth = useSelector(selectAuth);
   return (
     <div>
       <Header />
-      <Body_chatwindow user={auth[0]} reloadMessages={allMessages} />
+      <Body_chatwindow user={auth[0]} reloadMessages={allMessages}/>
     </div>
   );
 };

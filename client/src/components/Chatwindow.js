@@ -2,21 +2,19 @@ import React, { useEffect } from "react";
 import Button from "./Button";
 import "../scss/components/Chatwindow.css";
 import Messcard from "./Card/Messcard";
-import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAuth } from "../redux/Slices/AuthSlice";
-import { getCurrentState } from "../redux/Slices/AuthSlice";
 import { createNewMessageAsync } from "../redux/Slices/MessageSlice";
 import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 import {useState} from 'react';
 
+
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = [...reloadMessages.messages];
   const dispatch = useDispatch();
   const [chatId, setChatId] = React.useState(allMessages[0].chat);
-  console.log(chatId);
+  console.log(socket);
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
    const [receiverName, setReceiverName] = useState("");
@@ -28,19 +26,21 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         content: currentMessage,
       };
       await socket.emit("send_message", messageData);
-      await socket.emit("inChat", chatId);
+      await socket.emit("inChat", chatId);  
       await socket.emit("getAllChats", messageData);
       setMessageList((list) => [...list, messageData]);
-      await dispatch(createNewMessageAsync(messageData));
+      dispatch(createNewMessageAsync(messageData));
       setCurrentMessage("");
     }
   };
   useEffect(() => {
     socket.on("receive_message", (data) => {
+      console.log("nhan");
       setMessageList((list) => [...list, data]);
     });
+    return () => socket.off('receive_message');
   }, [socket]);
-  console.log(messageList);
+  
   const messageListComponents = messageList?.map((message) => {
     return (
       <div>
@@ -56,7 +56,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     );
   });
   useEffect(() => { 
-    console.log("useEffect");
     const mes = allMessages?.find(
       (mes) => mes.sender !== user.user._id
     );
@@ -65,8 +64,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       setReceiverName(res.payload.data.data.user.name);
     })
   },[chatId]);
-  
-
   return (
     <div className="chat">
       <div className="chat-profile">
