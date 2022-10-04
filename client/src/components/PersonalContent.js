@@ -35,9 +35,9 @@ const PersonalContent = () => {
       setIsFriend(r1);
     })
     const handleMessage = () => {
-      dispatch().then((res) => { 
-        navigate("/Message_ChatWindow");
-      });
+      // dispatch().then((res) => { 
+      //   navigate("/Message_ChatWindow");
+      // });
     };
     const personName = person.name;
     return (
