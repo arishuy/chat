@@ -1,27 +1,44 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNewFriendAsync } from '../redux/Slices/UserSlice';
+import { getAllMessagesAsync } from '../redux/Slices/MessageSlice';
 import "../scss/components/PersonalContent.css";
 import { getUserByIdAsync } from '../redux/Slices/UserSlice';
 const PersonalContent = () => {
   const params = useParams();
+  const [isFriend, setIsFriend] = React.useState(false);
+  const [isRequest, setIsRequest] = React.useState(false);
   const [personId, setPersonId] = React.useState(params.id);
   const [person, setPerson] = React.useState({});
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleCancelRequest = () => {
+    setIsRequest(false);
+  };
   const handleAddingFriend = () => {
     dispatch(addNewFriendAsync({
       id: personId
     })).then((res) => { 
-      alert("Add friend successfully");
+      setIsRequest(true);
     });
   }
-
    useEffect(() => {
      dispatch(getUserByIdAsync(personId)).then((res) => {
        setPerson(res.payload.data.data.user);
      });
    }, [dispatch]);
+    const myID = useSelector((state) => state.auth[0].user._id);
+    console.log(person);
+    const r1 = person.friends?.find(friend => friend._id === myID)?true:false;
+    useEffect(() => {
+      setIsFriend(r1);
+    })
+    const handleMessage = () => {
+      // dispatch().then((res) => { 
+      //   navigate("/Message_ChatWindow");
+      // });
+    };
     const personName = person.name;
     return (
       <div className="personal-container">
@@ -41,8 +58,8 @@ const PersonalContent = () => {
             </div>
           </div>
           <div className="personal-content-header-button">
-            <button className="addfriend-btn btn" onClick={handleAddingFriend}>Add Friend</button>
-            <button className="block-btn btn" onClick={handleAddingFriend}>Block</button>
+            <button className="addfriend-btn btn" onClick={isFriend?handleMessage:isRequest?handleCancelRequest:handleAddingFriend}>{isFriend?"Message":isRequest?"Cancel Request":"Add Friend"}</button>
+            <button className="block-btn btn" >Block</button>
           </div>
         </div>
       </div>
