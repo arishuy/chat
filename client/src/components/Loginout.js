@@ -8,6 +8,7 @@ const Loginout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDisplay, setIsDisplay] = React.useState(false);
+  const userid = useSelector((state) => state.auth[0].user._id);
   const handleUser = () => {
     setIsDisplay(!isDisplay);
     };
@@ -16,6 +17,9 @@ const Loginout = () => {
     socket.disconnect();
     navigate("/login");
   };
+  const handleAccount = () =>{
+    navigate("/PersonalPage/" + userid);
+  }
     return (
       <div>
         <div className="loginout" >
@@ -27,7 +31,7 @@ const Loginout = () => {
         {isDisplay && (
           <div className="sub-navigation">
             <div className="my-account">
-                <button className="btn btn-primary">My Account</button>
+                <button className="btn btn-primary" onClick={handleAccount}>My Account</button>
             </div>
             <div className="logout">
                 <button className="btn btn-primary" onClick={handleClick}>Logout</button>
