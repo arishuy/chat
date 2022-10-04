@@ -14,7 +14,6 @@ const DashBoard = () => {
     dispatch(getAllChatsAsync());
   }, [dispatch]);
   const auth = useSelector(selectAuth);
-  console.log(auth);
   const allChats = useSelector((state) => state.chats.chats);
   return (
     <div>

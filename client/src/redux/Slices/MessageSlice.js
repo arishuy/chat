@@ -13,7 +13,6 @@ export const createNewMessageAsync = createAsyncThunk(
       }
       );
       const message = response.data;
-      console.log(message);
       return message;
     } catch (error) { 
       console.log(error);
@@ -44,7 +43,6 @@ const MessageSlice = createSlice({
     },
     [getAllMessagesAsync.fulfilled]: (state, action) => {
       console.log("fetching data successfully");
-      console.log(action.payload.data.data);
       return action.payload.data.data;
     },
   },

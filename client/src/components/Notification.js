@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import '../scss/components/Notification.css'
 import Notificationcard from './Card/Notificationcard'
-import ScrollToBottom from "react-scroll-to-bottom";
-import io from "socket.io-client";
 
 const Notification = () => {
    var socket = io("http://localhost:5000", { transports: ["websocket"] });
@@ -10,7 +8,6 @@ const Notification = () => {
   const [notifications, setNotifications] = React.useState([]);
   const handleNotification = () => {
     setIsDisplay(!isDisplay);
-    console.log(isDisplay);
   }
   useEffect(() => { 
     socket.on("receive_notification", (data) => {

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../store/AuthContent";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
+import { getSocketStatus } from "../redux/Slices/SocketSlice";
 const LoginForm = () => {
 
   const auth_context = useContext(AuthContext);
@@ -20,23 +21,19 @@ const LoginForm = () => {
     email: username,
     password: password,
   };
-  console.log(auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {
       if (auth.payload.status === "success") {
+        dispatch(getSocketStatus());
         dispatchAllchats(getAllChatsAsync()).then(() => { 
           navigate("/dashboard");
         });
         auth_context.login( auth.payload.token);
-        // console.log(auth.payload.data.user._id);
       }
     });
   }; 
 
-  // console.log("login", auth);
-  // console.log(password);
-  // console.log(username);
   return (
     <div>
       <div className="modal">
