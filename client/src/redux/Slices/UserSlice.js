@@ -57,27 +57,6 @@ export const getUserByIdAsync = createAsyncThunk(
   }
 );
 
-export const getChatID = createAsyncThunk(
-  "user/getChatID",
-  async (userID1, userID2) => {
-    try {
-      const response = await Axios.post(
-        `http://localhost:5000/api/user/getChatID`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      const message = response.data;
-      return message;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
 export const FindUserByNameAsync = createAsyncThunk(
   "user/FindUserByNameAsync",
   async (payload) => {
