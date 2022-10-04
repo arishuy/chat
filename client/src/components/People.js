@@ -15,13 +15,11 @@ const People = () => {
   const user = useSelector((state) => state.auth);
   const people = useSelector((state) => state.user);
   const navigate1 = useNavigate();
-  console.log(user);
   const userId = user[0].user._id;
   useEffect(() => {
     dispatch(getUserByIdAsync(userId)).then((res) => { 
     });
   }, [dispatch]);
-  console.log(people);
   const friendElements = people.friends?.map((friend) => {
     return (
       <Link className="link-friend" to={`/PersonalPage/${friend._id}`}>

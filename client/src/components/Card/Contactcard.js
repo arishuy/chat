@@ -1,17 +1,13 @@
-import io from "socket.io-client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMessagesAsync } from "../../redux/Slices/MessageSlice";
 import { useNavigate } from "react-router";
 
 const Contactcard = ({chatId,name,latestMessage,time}) => {
-  var socket = io("http://localhost:5000", { transports: ["websocket"] });
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = async () => {
-    console.log("clicked");
     dispatch(getAllMessagesAsync(chatId)).then((res) => { 
-      socket.emit("getAllChats", chatId);
       navigate("/Message_ChatWindow");
     });
   };

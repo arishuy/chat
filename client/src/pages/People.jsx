@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 
 const People = () => {
    const auth = useSelector(selectAuth);
-   console.log(auth);
   return (
     <div>
       <Header />
