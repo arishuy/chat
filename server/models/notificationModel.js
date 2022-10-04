@@ -10,6 +10,7 @@ const notificationSchema = mongoose.Schema(
     receivers: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     createAt: { type: Date, default: Date.now },
     receiverChat: { type: mongoose.Schema.Types.ObjectId, ref: "Chat" },
+    Seen:{type:Boolean, default: false}
   },
 
   { timestamps: true }

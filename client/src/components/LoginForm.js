@@ -26,7 +26,7 @@ const LoginForm = () => {
     dispatch(loginAsync(login)).then(auth => {
       if (auth.payload.status === "success") {
         dispatch(getSocketStatus());
-        dispatchAllchats(getAllChatsAsync()).then(() => { 
+        dispatchAllchats(getAllChatsAsync()).then(() => {
           navigate("/dashboard");
         });
         auth_context.login( auth.payload.token);
