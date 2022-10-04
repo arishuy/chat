@@ -22,6 +22,9 @@ exports.addNewFriend = catchAsync(async (req, res,next) => {
   if (!friend) {
     return next(new AppError(`No user found with that ID`, 404));
   }
+  if (friend._id === req.user._id) {
+    return next(new AppError(`You can't add yourself as a friend`, 400));
+  } 
   if (friend.friends.includes(req.user._id)) {
     return next(new AppError(`You are already friends with this user`, 400));
   }

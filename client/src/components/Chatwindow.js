@@ -11,11 +11,15 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 import {useState} from 'react';
+import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
+import { getAllNotificationsAsync } from "../redux/Slices/NotificationSlice";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = [...reloadMessages.messages];
   const dispatch = useDispatch();
   const [chatId, setChatId] = React.useState(allMessages[0].chat);
+  const [newNotification, setNewNotification] = React.useState({});
+  const [receiverId, setReceiverId] = React.useState("");
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
    const [receiverName, setReceiverName] = useState("");
@@ -34,8 +38,25 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       await socket.emit("inChat", chatId);
       await socket.emit("send_message", messageData);
       await socket.emit("getAllChats", messageData);
+      
       setMessageList((list) => [...list, messageData]);
       await dispatch(createNewMessageAsync(messageData));
+      dispatch(
+        createNewNotificationAsync({
+          sender: user.user._id,
+          receiver: receiverId,
+          content: `${receiverName} has sent you a message`,
+        })
+      ).then((res) => {
+        console.log(res.payload.data.notification);
+        setNewNotification(res.payload);
+      });
+      dispatch(getAllNotificationsAsync()).then((res) => {});
+      await socket.emit("send_notification", {
+        sender: user.user._id,
+        receivers: receiverId,
+        content: `${receiverName} has sent you a message`,
+      });
       setCurrentMessage("");
     }
   };
@@ -63,6 +84,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       (mes) => mes.sender !== user.user._id
     );
     const receiverId = mes?.sender;
+    setReceiverId(receiverId);
     dispatch(getUserByIdAsync(receiverId)).then(res => {
       setReceiverName(res.payload.data.data.user.name);
     })
