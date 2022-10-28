@@ -37,6 +37,10 @@
   position: absolute;
   right: 1.875rem;
 }
+.reminder-option:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
 .reminder-content2 {
   width: 70%;
 }
