@@ -79,7 +79,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       setReceiverName(res.payload.data.data.user.name);
     })
   },[chatId]);
-
+  console.log(receiverId);
 
   return (
     <div className="chat">
@@ -93,7 +93,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         <h1 className="chat-h1">{receiverName}</h1>
         <span className="chat-span">Active now</span>
         <div className="button-group">
-          <Button title="Profile" />
+          <Button title="Profile" id={receiverId} />
           <Button title="Change theme" />
           <Button title="Search" />
           <Button title="Block" />
