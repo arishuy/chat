@@ -6,7 +6,6 @@ const notificationController = require("../controllers/notificationController");
 const Chat = require("../models/chatModel");
 
 router.post("/", notificationController.createNewNotification);
-router.get("/:id", notificationController.getAllNotificationsByUser);
 router.get("/tome", notificationController.getAllNotificationsToMe);
 
 

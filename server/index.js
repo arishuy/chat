@@ -58,7 +58,8 @@ io.on("connection", (socket) => {
 
   socket.on("send_notification", (data) => {
     console.log(data);
-    socket.to(data.receiver).emit("receive_notification", data);
+    console.log(data.receivers);
+    socket.to(data.receivers).emit("receive_notification", data);
   });
 
 

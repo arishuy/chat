@@ -7,22 +7,24 @@ import { getAllNotificationsAsync } from '../redux/Slices/NotificationSlice'
 
 const Notification = () => {
   const socket = useSelector(state => state.socket.socket);
+  console.log(socket);
   const [isDisplay, setIsDisplay] = React.useState(false);
   const dispatch = useDispatch();
-  const notificationFromRedux = useSelector(state => state.notifications.notifications);
-  console.log(notificationFromRedux);
-  const [notifications, setNotifications] = React.useState(notificationFromRedux);
+  // const notificationFromRedux = useSelector(state => state.notifications.notifications);
+  // console.log(notificationFromRedux);
+  const [notifications, setNotifications] = React.useState({});
   const handleNotification = () => {
     setIsDisplay(!isDisplay);
   }
-  useEffect(() => {
-   }, [dispatch,notifications]);
   useEffect(() => { 
+    console.log("useEffect");
     socket.on("receive_notification", (data) => {
+      console.log("receive_notification");
+      console.log(data);
       setNotifications([...notifications, data]);
       console.log(notifications);
     });
-  },[notifications]);
+  },[socket]);
   console.log(notifications);
   return (
     <div className="notification">
