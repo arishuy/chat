@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .open {
+    display: block;
+  }
+  .reminder-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25rem;
+    padding: 2.5rem;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+    box-sizing: border-box;
+    box-shadow: 0 0.9375rem 1.5625rem rgba(0,0,0,.6);
+    border-radius: 0.625rem;
+  }
+  
+  .reminder-box h2 {
+    margin: 0 0 1.875rem;
+    padding: 0;
+    color: black;
+    text-align: center;
+  }
+  
+  .reminder-box .title-box {
+    position: relative;
+  }
+  
+  .reminder-box .title-box input {
+    width: 100%;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 1.875rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background: transparent;
+  }
+  .reminder-box .title-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .reminder-box .title-box input:focus ~ label,
+  .reminder-box .title-box input:valid ~ label {
+    top: -1.25rem;
+    left: 0;
+    color: black;
+    font-size: 0.9375rem;
+  }
+  
+  .reminder-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    color: black;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 2.5rem;
+    margin-left: 6.25rem;
+    letter-spacing: 0.25rem;
+  }
+  
+  .reminder-box a:hover {
+    background: rgba(121, 217, 252, 0.54);
+    color: #fff;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0 0.3125rem pink,
+                0 0 1.5625rem pink,
+                0 0 3.125rem pink,
+                0 0 6.25rem pink;
+    cursor: pointer;
+  }
+  
+  .reminder-box a span {
+    position: absolute;
+    display: block;
+  }
+  
+  .reminder-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 0.125rem;
+    background: linear-gradient(90deg, transparent, pink);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .reminder-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 0.125rem;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, pink);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .reminder-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 0.125rem;
+    background: linear-gradient(270deg, transparent, pink);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .reminder-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 0.125rem;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, pink);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+  

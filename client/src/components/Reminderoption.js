@@ -6,6 +6,7 @@ const Reminderoption = (props) => {
       <span>{props.title}</span>
       <i class={props.icon}></i>
     </div>
+
   );
 };
 
