@@ -5,33 +5,27 @@ import Notificationcard from './Card/Notificationcard'
 import { useDispatch } from 'react-redux'
 import { getAllNotificationsAsync } from '../redux/Slices/NotificationSlice'
 
-const Notification = () => {
-  const socket = useSelector(state => state.socket.socket);
+const Notification = ({ socket }) => {
+  // const socket = useSelector(state => state.socket.socket);
   console.log(socket);
   const [isDisplay, setIsDisplay] = React.useState(false);
   const dispatch = useDispatch();
-  // const notificationFromRedux = useSelector(state => state.notifications.notifications);
-  // console.log(notificationFromRedux);
-  const [notifications, setNotifications] = React.useState({});
-  const handleNotification = () => {
+  const [notifications, setNotifications] = React.useState([]);
+  const handleNotification = () => {  
     setIsDisplay(!isDisplay);
   }
-  useEffect(() => { 
-    console.log("useEffect");
+  useEffect(() => {
     socket.on("receive_notification", (data) => {
-      console.log("receive_notification");
-      console.log(data);
-      setNotifications([...notifications, data]);
-      console.log(notifications);
-    }, [socket]);
-  },[socket]);
+      setNotifications((prev) => [data, ...prev]);
+    });
+  }, [socket]);
   console.log(notifications);
-  // const notificationList = notifications?.map((notification) => {
-  //   return (
-  //     <div>
-  //     </div>
-  //   )
-  // });
+  const listNotifications = notifications?.map((notification) => {
+    return (
+      <Notificationcard name={notification.sender} date={"2021-06-01"} content={notification.content}
+      />
+    );
+  });
   return (
     <div className="notification">
       <div className="notification-bell" onClick={handleNotification}>
@@ -40,7 +34,7 @@ const Notification = () => {
       </div>
       {isDisplay &&
         <div className="notification-list">
-          {notificationList}
+            {listNotifications}
         </div>
       }
     </div>

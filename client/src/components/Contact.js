@@ -14,7 +14,7 @@ const Contact = () => {
     });
   }, [dispatch]);
   const username = useSelector((state) => state.auth[0].user.name);
-  const chat = useSelector((state) => state.chat);
+  const chat = useSelector((state) => state.chat);  
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {
     return (

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 const Body_chatwindow = ({ user, reloadMessages }) => {
   const socket = useSelector((state) => state.socket.socket);
+  console.log(socket);
   return (
     <div id="body">
       <Sidebar />

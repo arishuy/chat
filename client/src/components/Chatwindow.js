@@ -2,17 +2,11 @@ import React, { useEffect } from "react";
 import Button from "./Button";
 import "../scss/components/Chatwindow.css";
 import Messcard from "./Card/Messcard";
-import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAuth } from "../redux/Slices/AuthSlice";
-import { getCurrentState } from "../redux/Slices/AuthSlice";
 import { createNewMessageAsync } from "../redux/Slices/MessageSlice";
 import ScrollToBottom from "react-scroll-to-bottom";
-import io from "socket.io-client";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 import {useState} from 'react';
-import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
-import { getAllNotificationsAsync } from "../redux/Slices/NotificationSlice";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = [...reloadMessages.messages];
@@ -37,7 +31,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       };
       await socket.emit("inChat", chatId);
       await socket.emit("send_message", messageData);
-      await socket.emit("getAllChats", messageData);
+      // await socket.emit("getAllChats", messageData);
 
       setMessageList((list) => [...list, messageData]);
       await dispatch(createNewMessageAsync(messageData));
@@ -73,6 +67,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     const mes = allMessages?.find(
       (mes) => mes.sender !== user.user._id
     );
+    console.log(mes);
     const receiverId = mes?.sender;
     setReceiverId(receiverId);
     dispatch(getUserByIdAsync(receiverId)).then(res => {
@@ -80,6 +75,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     })
   },[chatId]);
   console.log(receiverId);
+  console.log(socket);
 
   return (
     <div className="chat">

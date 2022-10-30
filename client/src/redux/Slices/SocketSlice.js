@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import io from "socket.io-client";
 
 const SocketSlice = createSlice({
@@ -8,8 +8,9 @@ const SocketSlice = createSlice({
     getSocketStatus: (state,action) => {
       const socket = io("http://localhost:5000", { transports: ['websocket', 'polling', 'flashsocket'] });
       socket.emit("addUser",action.payload.userId);
-     state = {socket};
-     return state;
+      state = {socket};
+      console.log(state);
+      return state;
     },
   },
 });

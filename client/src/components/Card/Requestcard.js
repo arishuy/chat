@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { acceptFriendAsync, getUserByIdAsync } from "../../redux/Slices/UserSlice";
 import { Link } from "react-router-dom";
 const Requestcard = ({ requestId, name }) => {
-  //var socket = io("http://localhost:5000", { transports: ["websocket"] });
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   const userId = user[0].user._id;

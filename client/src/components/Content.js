@@ -2,7 +2,7 @@ import React from "react";
 import "../scss/components/Content.css";
 import Remindercard from "./Card/Remindercard";
 import Topcard from "./Card/Topcard";
-const Content = ({reloadAllChats}) => {
+const Content = () => {
   return (
     <div className="content col-full">
       <div className="rank col-half">
