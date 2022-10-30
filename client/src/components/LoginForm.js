@@ -7,6 +7,7 @@ import { useContext } from "react";
 import AuthContext from "../store/AuthContent";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import { getSocketStatus } from "../redux/Slices/SocketSlice";
+import { Socket } from "socket.io-client";
 const LoginForm = () => {
 
   const auth_context = useContext(AuthContext);
@@ -15,17 +16,20 @@ const LoginForm = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
+  const socket = useSelector(state => state.socket.socket);
   const dispatchAllchats = useDispatch();
   const auth = useSelector((state) => state.auth);
   const login = {
     email: username,
     password: password,
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {
+      console.log(auth);
       if (auth.payload.status === "success") {
-        dispatch(getSocketStatus());
+        dispatch(getSocketStatus({userId: auth.payload.data.user._id }));
         dispatchAllchats(getAllChatsAsync()).then(() => {
           navigate("/dashboard");
         });

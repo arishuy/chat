@@ -23,9 +23,15 @@ const Notification = () => {
       console.log(data);
       setNotifications([...notifications, data]);
       console.log(notifications);
-    });
+    }, [socket]);
   },[socket]);
   console.log(notifications);
+  // const notificationList = notifications?.map((notification) => {
+  //   return (
+  //     <div>
+  //     </div>
+  //   )
+  // });
   return (
     <div className="notification">
       <div className="notification-bell" onClick={handleNotification}>
@@ -34,10 +40,7 @@ const Notification = () => {
       </div>
       {isDisplay &&
         <div className="notification-list">
-          <Notificationcard />
-          <Notificationcard />
-          <Notificationcard />
-          <Notificationcard />
+          {notificationList}
         </div>
       }
     </div>

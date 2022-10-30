@@ -43,9 +43,9 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       await dispatch(createNewMessageAsync(messageData));
       await socket.emit("send_notification",
         {
-          sender: user.user._id,
+          sender: user.user.name,
           receivers: receiverId,
-          content: `${user.user.name} has sent you a message`,
+          content: `${user.user.name} has sent you: ${currentMessage}`,
        });
       setCurrentMessage("");
     }
