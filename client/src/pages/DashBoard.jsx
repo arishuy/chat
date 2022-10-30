@@ -15,6 +15,7 @@ const DashBoard = () => {
   }, [dispatch]);
   const auth = useSelector(selectAuth);
   const allChats = useSelector((state) => state.chats.chats);
+  
   return (
     <div>
       <Header />

@@ -7,8 +7,6 @@ const bodyParser = require("body-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const { Server } = require("socket.io");
-const userController = require("./controllers/userController");
-const chatController = require("./controllers/chatController");
 
 
 app.use(bodyParser.json());
@@ -21,8 +19,6 @@ dotenv.config();
 connectDB();
 
 const apiRoutes = require("./routes/api.routes");
-const { use } = require("./routes/api.routes");
-const { on } = require("nodemon");
 app.use("/api", apiRoutes);
 
 const server = http.createServer(app);
@@ -40,24 +36,32 @@ const io = new Server(server, {
 let onlineUsers = [];
 
 const addNewUser = (userId, socketId) => {
-  !onlineUsers.some((user) => user.userId === userId) &&
     onlineUsers.push({ userId, socketId });
+    console.log(onlineUsers);
 };
 
-// const removeUser = (socketId) => {
-//   onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
-// };
+const removeUser = (socketId) => {
+  onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
+};
 
 const getUser = (userId) => {
   return onlineUsers.find((user) => user.userId === userId);
 };
-
+// const updateNotifications = (userId, notifications) => {
+//   onlineUsers = onlineUsers.map((user) => {
+//     if (user.userId === userId) {
+//       user.notifications = notifications;
+//     }
+//     return user;
+//   });
 io.on("connection", (socket) => {
 
   console.log(`User Connected: ${socket.id}`);
   socket.on("addUser", (userId) => {
     console.log("addUser", userId);
+    console.log("socket", socket.id);
     addNewUser(userId, socket.id);
+    console.log(onlineUsers);
   });
   
   socket.on("send_message", (data) => {
@@ -84,16 +88,19 @@ io.on("connection", (socket) => {
   socket.on("send_notification", (data) => {
     console.log(data);
     console.log(onlineUsers);
-    const user = getUser(data.receivers);
-    console.log(user);
-    if (user) {
-      socket.to(user.socketId).emit("receive_notification", data);
+    const receivers = getUser(data.receivers);
+    if (receivers) {
+      const socketID = receivers.socketId;
+      io.to(socketID).emit("receive_notification", data);
+      console.log("Da gui thanh cong!");
     }
   });
 
 
   socket.on("disconnect", () => {
     console.log("User Disconnected:", socket.id);
+    removeUser(socket.id);
+    console.log(onlineUsers);
   });
 });
 

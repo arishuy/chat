@@ -26,7 +26,6 @@ const AuthSlice = createSlice({
   },
   extraReducers: {
     [loginAsync.fulfilled]: (state, action) => {
-      console.log("fetching data successfully");
       state.push(action.payload.data);
     },
   },

@@ -1,24 +1,21 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import "../scss/components/Login.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginAsync } from "../redux/Slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import AuthContext from "../store/AuthContent";
+// import AuthContext from "../store/AuthContent";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import { getSocketStatus } from "../redux/Slices/SocketSlice";
-import { Socket } from "socket.io-client";
 const LoginForm = () => {
 
-  const auth_context = useContext(AuthContext);
+  // const auth_context = useContext(AuthContext);
 
   let navigate = useNavigate();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
-  const socket = useSelector(state => state.socket.socket);
   const dispatchAllchats = useDispatch();
-  const auth = useSelector((state) => state.auth);
   const login = {
     email: username,
     password: password,
@@ -33,7 +30,7 @@ const LoginForm = () => {
         dispatchAllchats(getAllChatsAsync()).then(() => {
           navigate("/dashboard");
         });
-        auth_context.login( auth.payload.token);
+        // auth_context.login(auth.payload.token);
       }
     });
   }; 

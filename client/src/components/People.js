@@ -8,7 +8,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FindUserByNameAsync } from "../redux/Slices/UserSlice";
 
 const People = () => {
-  //const [people, setPeople] = React.useState([]);
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const [currentInput, setCurrentInput] = React.useState("");

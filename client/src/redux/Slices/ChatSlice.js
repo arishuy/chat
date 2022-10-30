@@ -31,7 +31,6 @@ export const getAllChatsAsync = createAsyncThunk(
   },
   extraReducers: {
     [getAllChatsAsync.fulfilled]: (state, action) => {
-      console.log("fetching data successfully");
        return action.payload.data.data;
     },  
   },
