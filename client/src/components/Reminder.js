@@ -2,13 +2,20 @@ import React from "react";
 import "../scss/components/Reminder.css";
 import Reminderoption from "./Reminderoption";
 import Recocard from "./Card/Recocard";
+import Reminder_input from "./Reminder_input";
 
 const Reminder = () => {
+  const [isDisplay, setIsDisplay] = React.useState(false);
+  const handleClick = () => {
+    setIsDisplay(!isDisplay);
+  };
   return (
     <div className="reminder col-full">
       <div className="reminder-content1 col-half">
         <h1>Reminder</h1>
+        <div className="reminder-1" onClick={handleClick}>
         <Reminderoption title="Add new Reminder" icon="fa-solid fa-plus" />
+        </div>
         <Reminderoption title="View all Reminders" icon="fa-solid fa-eye" />
         <Reminderoption title="Delete Reminders" icon="fa-solid fa-trash" />
         <Reminderoption title="Edit Reminders" icon="fa-solid fa-edit" />
@@ -22,6 +29,7 @@ const Reminder = () => {
         <Recocard title="Go to hotel" time="12:00" />
         <Recocard title="Watch movie" time="21:00" />
       </div>
+      {isDisplay && <Reminder_input />}
     </div>
   );
 };

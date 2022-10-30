@@ -17,4 +17,7 @@ router.use("/user", authController.protect, userRoutes);
 const notificationRoutes = require("./notification.routes");
 router.use("/notification", authController.protect, notificationRoutes);
 
+const reminderRoutes = require("./reminder.routes");
+router.use("/reminder", authController.protect, reminderRoutes);
+
 module.exports = router;
