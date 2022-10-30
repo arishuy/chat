@@ -26,7 +26,7 @@ exports.getAllNotificationsByUser = catchAsync(async (req, res) => {
 });
 
 exports.getAllNotificationsToMe = catchAsync(async (req, res) => {
-    const notifications = await Notification.find({ receivers: req.user._id }).sort({ createAt: -1 });
+    const notifications = await Notification.find({receivers:req.user._id});
     res.status(200).json({
       status: "success",
       data: {

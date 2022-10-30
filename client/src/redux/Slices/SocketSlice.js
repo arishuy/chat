@@ -5,8 +5,9 @@ const SocketSlice = createSlice({
   name: "socket",
   initialState: {},
   reducers: {
-    getSocketStatus: (state) => {
-      const socket = io("http://localhost:5000",{transports: ['websocket', 'polling', 'flashsocket']});
+    getSocketStatus: (state,action) => {
+      const socket = io("http://localhost:5000", { transports: ['websocket', 'polling', 'flashsocket'] });
+      socket.emit("addUser",action.payload.userId);
      state = {socket};
      return state;
     },

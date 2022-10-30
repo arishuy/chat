@@ -38,25 +38,15 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       await socket.emit("inChat", chatId);
       await socket.emit("send_message", messageData);
       await socket.emit("getAllChats", messageData);
-      
+
       setMessageList((list) => [...list, messageData]);
       await dispatch(createNewMessageAsync(messageData));
-      dispatch(
-        createNewNotificationAsync({
-          sender: user.user._id,
-          receiver: receiverId,
-          content: `${receiverName} has sent you a message`,
-        })
-      ).then((res) => {
-        console.log(res.payload.data.notification);
-        setNewNotification(res.payload);
-      });
-      dispatch(getAllNotificationsAsync()).then((res) => {});
-      await socket.emit("send_notification", {
-        sender: user.user._id,
-        receivers: receiverId,
-        content: `${receiverName} has sent you a message`,
-      });
+      await socket.emit("send_notification",
+        {
+          sender: user.user.name,
+          receivers: receiverId,
+          content: `${user.user.name} has sent you: ${currentMessage}`,
+       });
       setCurrentMessage("");
     }
   };
@@ -79,7 +69,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       </div>
     );
   });
-  useEffect(() => { 
+  useEffect(() => {
     const mes = allMessages?.find(
       (mes) => mes.sender !== user.user._id
     );

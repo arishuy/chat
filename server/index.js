@@ -21,6 +21,8 @@ dotenv.config();
 connectDB();
 
 const apiRoutes = require("./routes/api.routes");
+const { use } = require("./routes/api.routes");
+const { on } = require("nodemon");
 app.use("/api", apiRoutes);
 
 const server = http.createServer(app);
@@ -35,18 +37,41 @@ const io = new Server(server, {
   },
 });
 
+let onlineUsers = [];
+
+const addNewUser = (userId, socketId) => {
+  !onlineUsers.some((user) => user.userId === userId) &&
+    onlineUsers.push({ userId, socketId });
+};
+
+// const removeUser = (socketId) => {
+//   onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
+// };
+
+const getUser = (userId) => {
+  return onlineUsers.find((user) => user.userId === userId);
+};
+
 io.on("connection", (socket) => {
 
   console.log(`User Connected: ${socket.id}`);
+  socket.on("addUser", (userId) => {
+    console.log("addUser", userId);
+    addNewUser(userId, socket.id);
+  });
   
   socket.on("send_message", (data) => {
     socket.to(data.chat).emit("receive_message", data);
   });
 
-  socket.on("inChat", (chatId) => { 
+  socket.on("inNotification", (userId) => {
+    socket.join(userId);
+  });
+
+  socket.on("inChat", (chatId) => {
     socket.join(chatId);
     console.log(`User with ID: ${socket.id} joined room: ${chatId}`);
-  })
+  });
 
   socket.on("reloadAllMessages", (data,chatId) => { 
     socket.to(chatId).emit("reloadAllMessages", data);
@@ -58,7 +83,12 @@ io.on("connection", (socket) => {
 
   socket.on("send_notification", (data) => {
     console.log(data);
-    socket.to(data.receiver).emit("receive_notification", data);
+    console.log(onlineUsers);
+    const user = getUser(data.receivers);
+    console.log(user);
+    if (user) {
+      socket.to(user.socketId).emit("receive_notification", data);
+    }
   });
 
 
