@@ -7,6 +7,7 @@ import { createNewMessageAsync } from "../redux/Slices/MessageSlice";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 import {useState} from 'react';
+import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = [...reloadMessages.messages];
@@ -38,8 +39,23 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       await socket.emit("send_notification",
         {
           sender: user.user.name,
+          senderId: user.user._id,
           receivers: receiverId,
-          content: `${user.user.name} has sent you: ${currentMessage}`,
+          content: `has sent you: ${currentMessage}`,
+          isMessage: true,
+          receiverChat: chatId,
+          Seen: false,
+        });
+      dispatch(
+        createNewNotificationAsync({
+          sender: user.user._id,
+          content: `has sent you: ${currentMessage}`,
+          isMessage: true,
+          receivers: receiverId,
+          receiverChat: chatId,
+        })
+      ).then((res) => {
+        console.log(res);
        });
       setCurrentMessage("");
     }
