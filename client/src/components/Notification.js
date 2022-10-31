@@ -11,12 +11,36 @@ const Notification = ({ socket }) => {
   const [isDisplay, setIsDisplay] = React.useState(false);
   const dispatch = useDispatch();
   const [notifications, setNotifications] = React.useState([]);
-  const handleNotification = () => {  
+  const handleNotification = () => {
     setIsDisplay(!isDisplay);
-  }
+  };
+  useEffect(() => {
+    dispatch(getAllNotificationsAsync()).then((res) => {
+      const allNotifsfromAPI = res.payload.data.data.notifications;
+      let allNotifs = [];
+      allNotifsfromAPI.forEach((element) => {
+        allNotifs.push({
+          sender: element.sender.name,
+          senderId: element.sender._id,
+          receivers: element.receivers,
+          content: element.content,
+          receiverChat: element.receiverChat,
+          isMessage: element.isMessage,
+          Seen: element.Seen,
+        });
+      });
+      console.log(allNotifs);
+      setNotifications(allNotifs);
+    });
+   }, [1]);
   useEffect(() => {
     socket.on("receive_notification", (data) => {
-      setNotifications((prev) => [data, ...prev]);
+      const index = notifications.findIndex((notif) => notif.senderId == data.senderId);
+      if (notif) {
+        notifications[index].content = data.content;
+      } else {
+         setNotifications((prev) => [data, ...prev]);
+      }
     });
   }, [socket]);
   console.log(notifications);
@@ -40,5 +64,4 @@ const Notification = ({ socket }) => {
     </div>
   );
 }
-
-export default Notification
+export default Notification;
