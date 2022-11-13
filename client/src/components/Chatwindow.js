@@ -8,21 +8,22 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 import {useState} from 'react';
 import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
+import { useParams } from "react-router";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
-  const allMessages = [...reloadMessages.messages];
+  //const allMessages = [...reloadMessages.messages];
+  const allMessages = useSelector((state) => state.message.messages);
+  console.log(allMessages);
   const dispatch = useDispatch();
-  const [chatId, setChatId] = React.useState(allMessages[0].chat);
+  const chatId = useParams().id;
   const [newNotification, setNewNotification] = React.useState({});
   const [receiverId, setReceiverId] = React.useState("");
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
-   const [receiverName, setReceiverName] = useState("");
-
+  const [receiverName, setReceiverName] = useState("");
    useEffect(() => {
     socket.emit("inChat", chatId);
    },[chatId])
-
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
@@ -35,7 +36,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       // await socket.emit("getAllChats", messageData);
 
       setMessageList((list) => [...list, messageData]);
-      await dispatch(createNewMessageAsync(messageData));
+      dispatch(createNewMessageAsync(messageData));
       await socket.emit("send_notification",
         {
           sender: user.user.name,
@@ -46,16 +47,17 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
           receiverChat: chatId,
           Seen: false,
         });
+       const notifData = {
+         sender: user.user._id,
+         content: `has sent you: ${currentMessage}`,
+         isMessage: true,
+         receivers: receiverId,
+         receiverChat: chatId,
+       };
       dispatch(
-        createNewNotificationAsync({
-          sender: user.user._id,
-          content: `has sent you: ${currentMessage}`,
-          isMessage: true,
-          receivers: receiverId,
-          receiverChat: chatId,
-        })
+        createNewNotificationAsync(notifData)
       ).then((res) => {
-        console.log(res);
+        console.log("add notification");
        });
       setCurrentMessage("");
     }
