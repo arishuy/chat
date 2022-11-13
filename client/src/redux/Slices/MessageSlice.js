@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "axios";
 import { createSlice } from "@reduxjs/toolkit";
 export const createNewMessageAsync = createAsyncThunk(
-  "message/createNewMessageAsyncAsync",
+  "message/createNewMessageAsync",
   async (payload) => {
     try {
       const response = await Axios.post(
