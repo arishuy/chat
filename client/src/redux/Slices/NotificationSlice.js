@@ -26,7 +26,7 @@ export const createNewNotificationAsync = createAsyncThunk(
         }
       );
       const message = response.data;
-      
+      console.log(message);
       return message;
     } catch (error) {
       console.log(error);

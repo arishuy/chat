@@ -12,6 +12,7 @@ exports.createNewNotification = catchAsync(async (req, res, next) => {
       { sender: req.user._id, isMessage: true },
       {
         content: req.body.content,
+        createdAt: Date.now(),
       }
     );
      res.status(201).json({

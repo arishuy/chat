@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMessagesAsync } from "../../redux/Slices/MessageSlice";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"
 
 const Contactcard = ({chatId,name,latestMessage,time}) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = async () => {
     dispatch(getAllMessagesAsync(chatId)).then((res) => { 
