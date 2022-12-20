@@ -1,5 +1,4 @@
 const Notification = require("../models/notificationModel");
-const Chat = require("../models/chatModel");
 const catchAsync = require("../utils/catchAsync");
 
 exports.createNewNotification = catchAsync(async (req, res, next) => {
