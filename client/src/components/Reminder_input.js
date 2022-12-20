@@ -1,7 +1,9 @@
 import React from 'react'
 import "../scss/components/Reminder_input.css";
-
+import { createNewReminderAsync } from '../redux/Slices/ReminderSlice';
+import { useDispatch } from 'react-redux';
 const Reminder_input = () => {  
+  const dispact = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(true);
   const [title, setTitle] = React.useState("");
   const [time, setTime] = React.useState("");
@@ -14,7 +16,7 @@ const Reminder_input = () => {
         date,
       };
       console.log(reminderData);
-      // socket.emit("reminder", reminderData);
+      dispact(createNewReminderAsync(reminderData));
     }
 
   return (

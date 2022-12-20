@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../scss/components/Reminder.css";
 import Reminderoption from "./Reminderoption";
 import Recocard from "./Card/Recocard";
 import Reminder_input from "./Reminder_input";
+import { useDispatch } from "react-redux";
+import { getAllRemindersAsync } from "../redux/Slices/ReminderSlice";
 
 const Reminder = () => {
+  const [reminder, setReminder] = React.useState([]);
+  const dispatch = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
   const handleClick = () => {
     setIsDisplay(!isDisplay);
   };
+  useEffect(() => {
+    dispatch(getAllRemindersAsync()).then((data) => {
+      console.log(data);
+    })}, [dispatch]);
   return (
     <div className="reminder col-full">
       <div className="reminder-content1 col-half">

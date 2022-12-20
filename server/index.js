@@ -95,6 +95,9 @@ io.on("connection", (socket) => {
       console.log("Da gui thanh cong!");
     }
   });
+  socket.on("addReminder", (data) => {
+    console.log(data);
+  });
 
 
   socket.on("disconnect", () => {

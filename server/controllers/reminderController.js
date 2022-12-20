@@ -10,4 +10,15 @@ exports.createNewReminder = catchAsync(async (req, res, next) => {
       },
     });
   });
+
+exports.getAllReminders = catchAsync(async (req, res) => {
+    const reminders = await Reminder.find();
+    res.status(200).json({
+      status: "success",
+      data: {
+        reminders: reminders,
+      },
+    });
+  });
+  
   

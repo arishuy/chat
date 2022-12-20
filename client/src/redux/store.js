@@ -5,6 +5,7 @@ import MessageReducer from "./Slices/MessageSlice";
 import UserReducer from "./Slices/UserSlice";
 import SocketReducer from "./Slices/SocketSlice";
 import NotificationReducer from "./Slices/NotificationSlice";
+import ReminderSlice from "./Slices/ReminderSlice";
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     message: MessageReducer,
     socket: SocketReducer,
     notifications: NotificationReducer,
+    reminder: ReminderSlice,
   },
 });

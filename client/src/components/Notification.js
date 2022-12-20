@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 
 
 const Notification = ({ socket }) => {
-  // const socket = useSelector(state => state.socket.socket);
-  console.log(socket);
   const [isDisplay, setIsDisplay] = React.useState(false);
   const dispatch = useDispatch();
   const [notifications, setNotifications] = React.useState([]);
