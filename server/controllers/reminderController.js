@@ -12,7 +12,8 @@ exports.createNewReminder = catchAsync(async (req, res, next) => {
   });
 
 exports.getAllReminders = catchAsync(async (req, res) => {
-    const reminders = await Reminder.find();
+    const id = req.user._id;
+    const reminders = await Reminder.find({user: id});
     res.status(200).json({
       status: "success",
       data: {
@@ -21,4 +22,25 @@ exports.getAllReminders = catchAsync(async (req, res) => {
     });
   });
   
+exports.deleteReminder = catchAsync(async (req, res) => {
+    const reminder = await Reminder.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        reminder: reminder,
+      },
+    });
+  }
+);
+
+exports.updateReminder = catchAsync(async (req, res) => {
+    const reminder = await Reminder.findByIdAndUpdate(req.params.id)
+    res.status(200).json({
+      status: "success",
+      data: {
+        reminder: reminder,
+      },
+    });
+  }
+);
   

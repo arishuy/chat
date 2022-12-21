@@ -31,9 +31,9 @@ const Sidebar = () => {
         </Link>
       </button>
       <button className="b1">
-        <Link to="/Message_ChatWindow">
+        <a href="https://www.facebook.com/huy9819/">
           <i class="fa-sharp fa-solid fa-paper-plane about_us"></i>
-        </Link>
+        </a>
       </button>
     </div>
   );

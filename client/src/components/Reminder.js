@@ -3,36 +3,59 @@ import "../scss/components/Reminder.css";
 import Reminderoption from "./Reminderoption";
 import Recocard from "./Card/Recocard";
 import Reminder_input from "./Reminder_input";
-import { useDispatch } from "react-redux";
-import { getAllRemindersAsync } from "../redux/Slices/ReminderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteReminderAsync,
+  getAllRemindersAsync,
+} from "../redux/Slices/ReminderSlice";
 
 const Reminder = () => {
   const [reminders, setReminders] = React.useState([]);
   const dispatch = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
+  const [isDisplay1, setIsDisplay1] = React.useState(false);
+
+  useEffect(() => {
+  dispatch(getAllRemindersAsync()).then((res) => {
+    setReminders(res.payload.data.data.reminders);
+  });
+  }, [dispatch,reminders]);
   const handleClick = () => {
     setIsDisplay(!isDisplay);
   };
-  useEffect(() => { 
-      dispatch(getAllRemindersAsync()).then((data) => {
-      setReminders(data.payload.data.reminders);
-      console.log(data.payload.data.reminders);
-    })}, [dispatch]);
-
-    const allReminders = reminders?.map((reminder) => {
-      return (
+  const handleClickD = () => {
+    setIsDisplay1(!isDisplay1);
+  };
+  const handleDelete = (id) => {
+    dispatch(deleteReminderAsync(id));
+  };
+  const allReminders = reminders?.map((reminder) => {
+    const handleClick1 = () => {
+      handleDelete(reminder._id);
+    };
+    return (
+      <div style={{ display: "flex" }}>
         <Recocard title={reminder.title} time={reminder.time} />
-      );
-    });
+        <div>
+          <a className="button x" onClick={handleClick1} style={{ display : isDisplay1 ? "flex" : "none" }}>
+            <i class="fa-solid fa-x"></i>
+          </a>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <div className="reminder col-full">
       <div className="reminder-content1 col-half">
         <h1>Reminder</h1>
         <div className="reminder-1" onClick={handleClick}>
-        <Reminderoption title="Add new Reminder" icon="fa-solid fa-plus" />
+          <Reminderoption title="Add new Reminder" icon="fa-solid fa-plus" />
         </div>
-        <Reminderoption title="View all Reminders" icon="fa-solid fa-eye" />
+        {/* <Reminderoption title="View all Reminders" icon="fa-solid fa-eye" /> */}
+        <div className="reminder-2" onClick={handleClickD}>
         <Reminderoption title="Delete Reminders" icon="fa-solid fa-trash" />
+        </div>
         <Reminderoption title="Edit Reminders" icon="fa-solid fa-edit" />
       </div>
       <div className="reminder-content2 col-half">
