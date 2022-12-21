@@ -2,7 +2,10 @@ const Reminder = require("../models/reminderModel");
 const catchAsync = require("../utils/catchAsync");
 
 exports.createNewReminder = catchAsync(async (req, res, next) => {
-    const newReminder = await Reminder.create(req.body);
+  const newReminder = await Reminder.create({
+    user: req.user._id,
+    ...req.body,
+    });
     res.status(201).json({
       status: "success",
       data: {

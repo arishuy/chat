@@ -66,14 +66,16 @@ export const updateReminderAsync = createAsyncThunk(
 
 const ReminderSlice = createSlice({
     name: "reminder",
-    initialState: [],
+    initialState: {},
     reducers: {},
     extraReducers: {
         [getAllRemindersAsync.fulfilled]: (state, action) => {
-            return action.payload.data.data;
+            state = action.payload.data.data;
+            console.log(state);
+            return state;
         }
     },
 });
 
-export const { getAllReminders } = ReminderSlice.actions;
+//export const {  } = ReminderSlice.actions;
 export default ReminderSlice.reducer;

@@ -10,16 +10,17 @@ import {
 } from "../redux/Slices/ReminderSlice";
 
 const Reminder = () => {
-  const [reminders, setReminders] = React.useState([]);
+  const reminders = useSelector((state) => state.reminder.reminders);
+  console.log(reminders);
+  //const [reminders, setReminders] = React.useState(remindersfromRedux);
   const dispatch = useDispatch();
+  const dispatch2 = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
   const [isDisplay1, setIsDisplay1] = React.useState(false);
 
   useEffect(() => {
-  dispatch(getAllRemindersAsync()).then((res) => {
-    setReminders(res.payload.data.data.reminders);
-  });
-  }, [dispatch,reminders]);
+    dispatch(getAllRemindersAsync());
+  }, [dispatch]);
   const handleClick = () => {
     setIsDisplay(!isDisplay);
   };
@@ -28,6 +29,7 @@ const Reminder = () => {
   };
   const handleDelete = (id) => {
     dispatch(deleteReminderAsync(id));
+    dispatch2(getAllRemindersAsync());
   };
   const allReminders = reminders?.map((reminder) => {
     const handleClick1 = () => {

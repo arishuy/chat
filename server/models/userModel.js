@@ -52,7 +52,6 @@ const userSchema = mongoose.Schema(
     waitingRequestFriends: [
       { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     ],
-    reminder: [{ type: mongoose.Schema.Types.ObjectId, ref: "reminder" }],
     passwordChangedAt: Date,
   },
   { timestaps: true }
