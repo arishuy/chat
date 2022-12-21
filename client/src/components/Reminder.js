@@ -7,16 +7,23 @@ import { useDispatch } from "react-redux";
 import { getAllRemindersAsync } from "../redux/Slices/ReminderSlice";
 
 const Reminder = () => {
-  const [reminder, setReminder] = React.useState([]);
+  const [reminders, setReminders] = React.useState([]);
   const dispatch = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
   const handleClick = () => {
     setIsDisplay(!isDisplay);
   };
-  useEffect(() => {
-    dispatch(getAllRemindersAsync()).then((data) => {
-      console.log(data);
+  useEffect(() => { 
+      dispatch(getAllRemindersAsync()).then((data) => {
+      setReminders(data.payload.data.reminders);
+      console.log(data.payload.data.reminders);
     })}, [dispatch]);
+
+    const allReminders = reminders?.map((reminder) => {
+      return (
+        <Recocard title={reminder.title} time={reminder.time} />
+      );
+    });
   return (
     <div className="reminder col-full">
       <div className="reminder-content1 col-half">
@@ -33,9 +40,7 @@ const Reminder = () => {
           <h1 className="title">Title</h1>
           <h1 className="time">Time</h1>
         </div>
-        <Recocard title="Meet Uyen Hoang" time="10:00" />
-        <Recocard title="Go to hotel" time="12:00" />
-        <Recocard title="Watch movie" time="21:00" />
+        {allReminders}
       </div>
       {isDisplay && <Reminder_input />}
     </div>
