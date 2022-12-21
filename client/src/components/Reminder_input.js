@@ -18,7 +18,9 @@ const Reminder_input = () => {
       console.log(reminderData);
       dispact(createNewReminderAsync(reminderData));
     }
-
+  const handleDisplay = () => {
+    setIsDisplay(!isDisplay);
+  }
   return (
     <div style={{ display: isDisplay ? "block" : "none" }}>
       <div className="modal" >
@@ -61,6 +63,7 @@ const Reminder_input = () => {
               />
               <label>Date</label>
             </div>
+            <div style={{display: 'flex'}}>
             <a onClick={handleClick}>
               <span></span>
               <span></span>
@@ -68,6 +71,14 @@ const Reminder_input = () => {
               <span></span>
               Add
             </a>
+            <a onClick={handleDisplay}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Close
+            </a>
+            </div>
           </form>
         </div>
       </div>

@@ -4,7 +4,11 @@ import Axios from "axios";
 export const getAllRemindersAsync = createAsyncThunk(
     "reminder/getRemindersAsync",
     async () => {
-        const response = await Axios.get("http://localhost:5000/api/reminder/getallreminders");
+        const response = await Axios.get("http://localhost:5000/api/reminder/getallreminders", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
         const reminders = response.data;
         return reminders;
     }
