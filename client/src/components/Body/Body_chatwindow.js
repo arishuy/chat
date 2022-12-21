@@ -3,6 +3,7 @@ import Chatwindow from '../Chatwindow'
 import Sidebar from '../Sidebar'
 import "../../scss/components/Body.css"
 import { useSelector } from 'react-redux'
+import Contact from "../Contact";
 
 const Body_chatwindow = ({ user, reloadMessages }) => {
   const socket = useSelector((state) => state.socket.socket);

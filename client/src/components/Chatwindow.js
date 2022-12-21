@@ -9,11 +9,13 @@ import { getUserByIdAsync } from "../redux/Slices/UserSlice";
 import {useState} from 'react';
 import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
 import { useParams } from "react-router";
+import Contact from "./Contact";
+import { addLatestMessage } from "../redux/Slices/ChatSlice";
+import { timeSince } from "../../src/utils/changeDate";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   //const allMessages = [...reloadMessages.messages];
   const allMessages = useSelector((state) => state.message.messages);
-  console.log(allMessages);
   const dispatch = useDispatch();
   const chatId = useParams().id;
   const [newNotification, setNewNotification] = React.useState({});
@@ -21,6 +23,10 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
   const [receiverName, setReceiverName] = useState("");
+  const dispatch1 = useDispatch();
+   useEffect(() => {
+     setMessageList(allMessages);
+   }, [chatId,dispatch]);
    useEffect(() => {
     socket.emit("inChat", chatId);
    },[chatId])
@@ -30,11 +36,19 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         sender: user.user._id,
         chat: chatId,
         content: currentMessage,
+        createdAt: new Date().now,
       };
       await socket.emit("inChat", chatId);
       await socket.emit("send_message", messageData);
-      // await socket.emit("getAllChats", messageData);
-
+      
+      await socket.emit("getAllChats", messageData);
+      dispatch1(
+        addLatestMessage({
+          id: chatId,
+          latestMessage: "you: " + currentMessage,
+          createdAt: new Date().now,
+        })
+      );
       setMessageList((list) => [...list, messageData]);
       dispatch(createNewMessageAsync(messageData));
       await socket.emit("send_notification",
@@ -65,6 +79,13 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
+       dispatch1(
+         addLatestMessage({
+           id: chatId,
+           latestMessage: data.sender == user.user._id ? "you: " + data.content : data.content,
+           createdAt: data.createdAt,
+         })
+       );
     });
   }, [socket]);
   const messageListComponents = messageList?.map((message) => {
@@ -77,6 +98,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
               : "mess-content-left"
           }
           content={message.content}
+          time={new Date(message.createdAt).toLocaleTimeString()}
         />
       </div>
     );
@@ -97,24 +119,17 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
 
   return (
     <div className="chat">
-      <div className="chat-profile">
-        <div className="contact-avatar-chat">
+      <div className="chat-contact-container">
+        <Contact />
+      </div>
+      <div className="chat-content">
+        <div className="chat-content__header">
           <img
-            className="avatar__image"
+            className="contact-avatar"
             src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
           ></img>
+          <h1 className="chat-h1">{receiverName}</h1>
         </div>
-        <h1 className="chat-h1">{receiverName}</h1>
-        <span className="chat-span">Active now</span>
-        <div className="button-group">
-          <Button title="Profile" id={receiverId} />
-          <Button title="Change theme" />
-          <Button title="Search" />
-          <Button title="Block" />
-        </div>
-      </div>
-
-      <div className="chat-content">
         <ScrollToBottom className="chat-content__message1">
           <div className="chat-content__message">{messageListComponents}</div>
         </ScrollToBottom>
@@ -137,6 +152,22 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
           <i class="fa-solid fa-angles-right like" onClick={sendMessage}></i>
         </div>
       </div>
+      {/* <div className="chat-profile">
+        <div className="contact-avatar-chat">
+          <img
+            className="avatar__image"
+            src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+          ></img>
+        </div>
+        <h1 className="chat-h1">{receiverName}</h1>
+        <span className="chat-span">Active now</span>
+        <div className="button-group">
+          <Button title="Profile" id={receiverId} />
+          <Button title="Change theme" />
+          <Button title="Search" />
+          <Button title="Block" />
+        </div>
+      </div> */}
     </div>
   );
 };

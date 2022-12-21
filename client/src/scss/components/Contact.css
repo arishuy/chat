@@ -3,13 +3,15 @@
   src: url("../../font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
 }
 .contact-body {
-  display: block;
-  width: calc(100vw - 5vw);
+  display: flex;
+  width: calc(100vw - 70vw);
   height: 92vh;
+  flex-direction: column;
 }
 .contact-content {
   display: flex;
   height: 20vh;
+  flex-direction: column;
   justify-content: space-between;
 }
 .contact-regular {
@@ -20,7 +22,7 @@
   font-family: "Dancing Script";
 }
 .contact-avatar {
-  margin-left: 1.875rem;
+
   display: flex;
 }
 .contact-avatar {
@@ -33,17 +35,19 @@
 .avatar__image {
   /* Rounded border */
   border-radius: 50%;
-
+  margin-top: -10px;
   /* Take full size */
   height: 100%;
   width: 100%;
   padding-right: 0.9375rem;
 }
 .search {
-  margin: 0.625rem 5% 0.625rem 0.625rem;
+  padding-top: 1.25rem;
+  /* margin: 0.625rem 5% 0.625rem 0.625rem; */
+  margin-left: 1rem;
   float: right;
-  width: 30%;
-  height: 30vh;
+  width: 100%;
+  /* //height: 30vh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,6 +60,7 @@
 }
 
 .search-content input {
+  width: 85%;
   padding-left: 2.5rem;
   font-size: 1.5625rem;
   border-radius: 0.3125rem;
@@ -64,8 +69,8 @@
   background-color: rgba(217, 217, 217, 1);
 }
 .search-content input:focus {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 .search-content input::placeholder {
   font-style: italic;
@@ -75,8 +80,8 @@
 .contact-message {
   height: calc(92vh - 23vh);
   padding-left: 2rem;
-  padding-top: 1.25rem;
-  padding-right: 1.25rem; 
+  padding-top: 5rem;
+  padding-right: 1.25rem;
   overflow: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -84,8 +89,8 @@
 .message-content {
   margin-top: 1.25rem;
   position: relative;
-  width: 90vw;
-  height: 6.25rem;
+  width: 100%;
+  height: 5.25rem;
   background: linear-gradient(
       180deg,
       rgba(121, 217, 252, 0.54) 0%,
@@ -96,6 +101,7 @@
   border-radius: 0.625rem;
   display: flex;
   cursor: pointer;
+  /* border-bottom: 1px solid  rgba(121, 217, 252, 0.54); */
 }
 .message-content .kimochi {
   position: absolute;
@@ -108,7 +114,7 @@
 }
 .message-content .message-text {
   position: absolute;
-  left: 7em;
+  left: 5em;
   text-align: left;
   font-size: 1.25em;
   color: black;
@@ -121,24 +127,38 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 0.75em;
   line-height: 1.3em;
   color: black;
 }
 .message-content p {
+  padding-top: 0.5em;
   grid-column: 2;
   grid-row: 2;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  font-size: 0.8em;
+  font-size: 0.6em;
   line-height: 1.8em;
   color: black;
   margin-top: -0.9375em;
 }
+
+.message-content-h5{
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 3px;
+  line-height: 1.8em;
+  color: black;
+  margin-top: -0.9375em;
+  position: absolute;
+  right: 0.9375em;
+  bottom: 0.9375em;
+}
+
 .message-content h3 {
   font-style: italic;
-  font-size: 0.9375em;
+  font-size: 10px;
   color: gray;
   font-weight: none;
   position: absolute;

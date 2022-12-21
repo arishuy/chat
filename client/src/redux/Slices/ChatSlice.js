@@ -27,13 +27,23 @@ export const getAllChatsAsync = createAsyncThunk(
   const ChatSlice = createSlice({
     name: "chats",
   initialState: [],
-  reducers: {
+    reducers: {
+        addLatestMessage: (state, action) => {
+        state.chats.find((chat) => chat._id == action.payload.id).latestMessage.content = action.payload.latestMessage;
+         state.chats.find(
+           (chat) => chat._id == action.payload.id
+         ).latestMessage.createAt = action.payload.createAt;
+        console.log(state);
+    },
+    
   },
   extraReducers: {
     [getAllChatsAsync.fulfilled]: (state, action) => {
+      state = action.payload.data.data;
+      console.log(state);
        return action.payload.data.data;
     },  
   },
 });
-export const { getAllChats } = ChatSlice.actions;
+export const { getAllChats, addLatestMessage } = ChatSlice.actions;
 export default ChatSlice.reducer;
