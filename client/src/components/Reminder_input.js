@@ -2,9 +2,11 @@ import React from 'react'
 import "../scss/components/Reminder_input.css";
 import { createNewReminderAsync } from '../redux/Slices/ReminderSlice';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { getAllRemindersAsync } from '../redux/Slices/ReminderSlice';
 const Reminder_input = () => {  
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const dispatch1 = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(true);
   const [title, setTitle] = React.useState("");
   const [time, setTime] = React.useState("");
@@ -12,13 +14,13 @@ const Reminder_input = () => {
   const handleClick = () => {
     setIsDisplay(false);
     const reminderData = {
-        user: user._id,
         title,
         time,
         date,
       };
       console.log(reminderData);
-      dispatch(createNewReminderAsync(reminderData));
+    dispatch(createNewReminderAsync(reminderData));
+    dispatch1(getAllRemindersAsync());
     }
   const handleDisplay = () => {
     setIsDisplay(false);
