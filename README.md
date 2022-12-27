@@ -6,7 +6,9 @@ Website nhắn tin và tạo lịch hẹn
 ![image](https://user-images.githubusercontent.com/88521078/209419795-ad916081-5a7c-4671-b8f5-4f4b0df666d5.png)
 - Tạo lịch hẹn:
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/102478568/209691169-f6347f70-3399-4ebc-a1e3-703b1c756faa.png">
-![image](https://user-images.githubusercontent.com/102478568/209691383-78ce6fce-b0e8-422b-af45-669cfad3638c.png)
+
+![image](https://user-images.githubusercontent.com/102478568/209691500-8cf024bb-5928-4b1a-b665-4e8bfbc59a3f.png)
+
 -Kết bạn:
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/102478568/209690460-bc6c5976-24a2-48a3-84fe-7c60e77ac5bf.png">
 -Trang cá nhân:
